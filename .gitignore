@@ -1,0 +1,11 @@
+# File temporanei / OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# File di lavoro per gli screenshot (non fanno parte del sito)
+_shot.html
+
+# Editor
+.vscode/
+.idea/

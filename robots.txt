@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# TODO: sostituire con il dominio definitivo quando registrato
+Sitemap: https://www.asdpolisportivastrovina.it/sitemap.xml
