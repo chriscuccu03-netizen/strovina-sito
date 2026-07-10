@@ -41,7 +41,7 @@ img { max-width: 100%; display: block; }
 a { color: inherit; }
 button { font: inherit; cursor: pointer; background: none; border: none; color: inherit; }
 
-section[id], [id="contatti"] { scroll-margin-top: 94px; }
+section[id], [id="contatti"] { scroll-margin-top: 1rem; }
 
 ::selection { background: var(--giallo); color: var(--amaranto-scuro); }
 
@@ -200,16 +200,11 @@ section[id], [id="contatti"] { scroll-margin-top: 94px; }
 }
 
 /* ═══════════ HEADER (barra principale) ═══════════ */
+/* Non sticky: scorre via con la pagina (evita il distacco nei browser in-app come Telegram) */
 .header {
-  position: sticky;
-  top: 0; left: 0; right: 0;
-  z-index: 100;
+  position: static;
   background: #14050B;
   border-bottom: 1px solid rgba(250, 245, 233, .1);
-  transition: box-shadow var(--transition);
-}
-.header.is-scrolled {
-  box-shadow: 0 8px 30px -12px rgba(0, 0, 0, .6);
 }
 .header__inner {
   width: 100%;
@@ -614,30 +609,6 @@ section[id], [id="contatti"] { scroll-margin-top: 94px; }
   text-transform: uppercase;
   letter-spacing: .14em;
   color: rgba(250, 245, 233, .65);
-}
-
-/* Zanzarona che attraversa l'hero */
-.mosquito {
-  position: absolute;
-  z-index: 3;
-  width: 46px; height: 46px;
-  color: var(--giallo);
-  opacity: 0;
-  top: 24%;
-  left: -60px;
-  pointer-events: none;
-}
-.mosquito__wing { animation: buzz .12s linear infinite alternate; transform-origin: 24px 30px; }
-@keyframes buzz { from { opacity: .35; } to { opacity: 1; } }
-.mosquito.is-flying { animation: fly 7s cubic-bezier(.45, .1, .55, .9) 1.2s 1 forwards; }
-@keyframes fly {
-  0%   { opacity: 0; transform: translate(0, 0) rotate(8deg); }
-  5%   { opacity: 1; }
-  25%  { transform: translate(24vw, -6vh) rotate(-6deg); }
-  50%  { transform: translate(50vw, 4vh) rotate(10deg); }
-  75%  { transform: translate(76vw, -8vh) rotate(-8deg); }
-  95%  { opacity: 1; }
-  100% { opacity: 0; transform: translate(108vw, -2vh) rotate(6deg); }
 }
 
 /* ═══════════ MATCH CENTER ═══════════ */
@@ -1383,5 +1354,4 @@ section[id], [id="contatti"] { scroll-margin-top: 94px; }
     transition-duration: .01ms !important;
   }
   .reveal { opacity: 1; transform: none; }
-  .mosquito { display: none; }
 }

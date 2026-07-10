@@ -230,14 +230,6 @@
     counters.forEach(function (el) { el.textContent = el.getAttribute("data-count"); });
   }
 
-  /* ── Zanzarona: vola una volta al caricamento ── */
-  const mosquito = document.getElementById("mosquito");
-  if (mosquito && !prefersReducedMotion) {
-    window.addEventListener("load", function () {
-      mosquito.classList.add("is-flying");
-    });
-  }
-
   /* ── Lightbox gallery ── */
   const grid = document.getElementById("galleryGrid");
   const lightbox = document.getElementById("lightbox");
