@@ -1108,26 +1108,22 @@ section[id], [id="contatti"] { scroll-margin-top: 1rem; }
   min-height: 200px;
   transition: transform var(--transition), box-shadow var(--transition);
 }
-.sponsor-card--main {
-  background: var(--amaranto-scuro);
-  color: var(--crema);
-  box-shadow: var(--shadow);
-}
-.sponsor-card--main:hover { transform: translateY(-6px); }
-.sponsor-card__label {
+/* etichetta "Sponsor tecnico" sul logo Joma */
+.sponsor-card__badge {
+  position: absolute;
+  top: .55rem;
+  left: .55rem;
+  z-index: 2;
   font-family: var(--font-display);
-  font-size: .72rem;
-  letter-spacing: .28em;
-  text-transform: uppercase;
-  color: var(--giallo);
-}
-.sponsor-card__name {
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 2.6rem;
+  font-weight: 600;
+  font-size: .6rem;
   letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--amaranto-scuro);
+  background: var(--giallo);
+  padding: .3rem .6rem;
+  border-radius: 4px;
 }
-.sponsor-card--main p { font-size: .9rem; color: rgba(250, 245, 233, .7); }
 
 /* card logo: fondo bianco, logo contenuto senza deformazioni */
 .sponsor-card--logo {
@@ -1150,6 +1146,7 @@ section[id], [id="contatti"] { scroll-margin-top: 1rem; }
 
 /* loghi con fondo pieno: la card prende il colore del brand, niente cornice bianca */
 .sponsor-card--tile {
+  position: relative;   /* ancora per l'etichetta */
   background: var(--brand);
   padding: 0;
   overflow: hidden;
@@ -1286,14 +1283,14 @@ section[id], [id="contatti"] { scroll-margin-top: 1rem; }
 /* ═══════════ REVEAL ANIMATIONS ═══════════ */
 .reveal {
   opacity: 0;
-  transform: translateY(28px);
-  transition: opacity .8s cubic-bezier(.22, .8, .3, 1), transform .8s cubic-bezier(.22, .8, .3, 1);
+  transform: translateY(18px);
+  transition: opacity .45s cubic-bezier(.22, .8, .3, 1), transform .45s cubic-bezier(.22, .8, .3, 1);
   transition-delay: var(--reveal-delay, 0s);
 }
 .reveal.is-visible { opacity: 1; transform: translateY(0); }
 
 /* Hero entrance (senza scroll) */
-.hero .reveal { transform: translateY(34px); }
+.hero .reveal { transform: translateY(22px); }
 
 /* ═══════════ RESPONSIVE ═══════════ */
 @media (max-width: 1024px) {

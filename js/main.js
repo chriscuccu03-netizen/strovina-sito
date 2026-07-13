@@ -201,11 +201,13 @@
           function (c) { return c.classList && c.classList.contains("reveal"); }
         );
         const idx = siblings.indexOf(el);
-        el.style.setProperty("--reveal-delay", (Math.max(idx, 0) * 0.09) + "s");
+        el.style.setProperty("--reveal-delay", (Math.min(Math.max(idx, 0), 6) * 0.04) + "s");
         el.classList.add("is-visible");
         io.unobserve(el);
       });
-    }, { threshold: 0.12, rootMargin: "0px 0px -6% 0px" });
+      // rootMargin positivo in basso: la sezione parte poco prima di entrare
+      // nello schermo, cosi' arriva gia' visibile invece di comparire in ritardo
+    }, { threshold: 0.02, rootMargin: "0px 0px 10% 0px" });
 
     revealEls.forEach(function (el) { io.observe(el); });
   }
