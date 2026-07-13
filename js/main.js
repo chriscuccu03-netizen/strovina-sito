@@ -5,6 +5,8 @@
   "use strict";
 
   const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  // su mobile la foto e' una banda ad altezza fissa: il parallasse scoprirebbe un vuoto
+  const isMobile = window.matchMedia("(max-width: 820px)");
 
   /* ══════════════════════════════════════════════════════════
      PROSSIMI INCONTRI — riempire questo array con le partite.
@@ -142,9 +144,13 @@
     header.classList.toggle("is-scrolled", y > 40);
     toTop.classList.toggle("is-visible", y > 900);
 
-    // Parallax leggero sull'hero
-    if (!prefersReducedMotion && heroBg && y < window.innerHeight * 1.2) {
-      heroBg.style.transform = "translateY(" + y * 0.28 + "px)";
+    // Parallax leggero sull'hero (solo desktop)
+    if (!prefersReducedMotion && heroBg) {
+      if (isMobile.matches) {
+        if (heroBg.style.transform) heroBg.style.transform = "";
+      } else if (y < window.innerHeight * 1.2) {
+        heroBg.style.transform = "translateY(" + y * 0.28 + "px)";
+      }
     }
     ticking = false;
   }

@@ -2,7 +2,7 @@
 <!-- TODO: sostituire il dominio placeholder con quello definitivo -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://www.asdpolisportivastrovina.it/</loc>
+    <loc>https://strovina-sito.vercel.app/</loc>
     <lastmod>2026-07-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
