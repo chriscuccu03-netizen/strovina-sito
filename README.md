@@ -32,13 +32,13 @@ sito/
 | Cosa | Dove |
 |---|---|
 | **Dominio definitivo** | `index.html` (canonical, og:image, JSON-LD), `robots.txt`, `sitemap.xml` |
-| **Rosa 2025-26** | sezione `#squadra`, blocco `.rosa-placeholder` |
+| **Rosa 2026-27** | sezione `#squadra`, blocco `.rosa-placeholder` |
 | **Prossimi incontri (carosello hero)** | `js/main.js`, array `PROSSIME_PARTITE` in cima al file — ordinamento per data automatico, le partite passate spariscono da sole |
 | **Calendario / prossima partita** | sezione `#stagione`, card `.match-card--next` |
 | **Link ai siti degli sponsor** | sezione `#sponsor` — i 5 loghi sono inseriti, mancano gli URL |
 | **P.IVA / Codice Fiscale** | footer, `.footer__fiscal` |
 | **Link Tuttocampo diretto** | card campionato in `#stagione` (ID società: 1028079) |
-| **Girone 2025-26** | verificare "Girone D · Oristano" con dato FIGC ufficiale |
+| **Girone 2026-27** | verificare "Girone D · Oristano" con dato FIGC ufficiale |
 
 ## Note
 
