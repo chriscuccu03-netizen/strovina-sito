@@ -1323,6 +1323,9 @@ section[id], [id="contatti"] { scroll-margin-top: 1rem; }
   .hero__content { order: 1; align-self: stretch; }
   .matchbar { order: 2; }
   .hero-rail { order: 3; }
+  /* display:contents azzera il z-index di .hero__layout: senza questo il velo
+     scuro dell'hero (.hero__overlay, z-index 1) coprirebbe testo e rail. */
+  .hero__content, .hero-rail { position: relative; z-index: 2; }
 
   /* ── Prossimi incontri: 3 barre fisse, nessuno scorrimento interno ── */
   .hero-rail__list { max-height: none; overflow: visible; }
