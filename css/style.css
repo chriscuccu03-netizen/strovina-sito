@@ -1310,7 +1310,24 @@ section[id], [id="contatti"] { scroll-margin-top: 1rem; }
   .nav__link:not(:first-child):not(.nav__link--cta)::before { display: none; }
   .burger { display: flex; }
 
-  .hero__stats { grid-template-columns: repeat(2, 1fr); }
+  /* ── Header essenziale: via la striscia utility e la scritta STROVINA ── */
+  .topbar { display: none; }
+  .header__name { display: none; }
+
+  /* ── Via i 4 riquadri; al loro posto sale la "Prossima partita" ──
+     .hero__layout diventa trasparente cosi' hero-content / matchbar / rail
+     sono tutti figli flex di .hero e posso riordinarli. */
+  .hero__stats { display: none; }
+  .hero { display: flex; flex-direction: column; }
+  .hero__layout { display: contents; }
+  .hero__content { order: 1; align-self: stretch; }
+  .matchbar { order: 2; }
+  .hero-rail { order: 3; }
+
+  /* ── Prossimi incontri: 3 barre fisse, nessuno scorrimento interno ── */
+  .hero-rail__list { max-height: none; overflow: visible; }
+  .rail-item:nth-child(n + 4) { display: none; }
+
   .match-grid { grid-template-columns: 1fr; }
   .societa-grid { grid-template-columns: 1fr; }
   .societa-photos { max-width: 480px; margin-inline: auto; }

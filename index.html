@@ -189,10 +189,10 @@
           <a class="hero-rail__more" href="#stagione">Vai al match center →</a>
         </aside>
       </div>
-    </section>
 
-    <!-- Barra prossima partita con countdown (dati da PROSSIME_PARTITE in js/main.js) -->
-    <div class="matchbar" role="region" aria-label="Prossima partita">
+      <!-- Barra prossima partita con countdown (dati da PROSSIME_PARTITE in js/main.js).
+           Sta dentro l'hero perche' su mobile viene riordinata sopra i prossimi incontri. -->
+      <div class="matchbar" role="region" aria-label="Prossima partita">
       <div class="matchbar__inner">
         <div class="matchbar__label">
           <strong>Prossima partita</strong>
@@ -215,8 +215,9 @@
           </div>
         </div>
         <a href="#stagione" class="matchbar__cta">Dettagli →</a>
+        </div>
       </div>
-    </div>
+    </section>
 
     <!-- ══════════════ STAGIONE / MATCH CENTER ══════════════ -->
     <section class="section section--dark" id="stagione">
