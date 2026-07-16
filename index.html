@@ -37,7 +37,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Barlow:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
 
   <!-- Preload hero -->
-  <link rel="preload" as="image" href="assets/img/squadra-2025-26.jpg">
+  <link rel="preload" as="image" href="assets/img/squadra-2025-26.jpg" media="(max-width: 820px)">
+  <link rel="preload" as="image" href="assets/img/squadra-2025-26@2x.jpg" media="(min-width: 821px)">
 
   <link rel="stylesheet" href="css/style.css">
 
@@ -76,8 +77,8 @@
       },
       "geo": {
         "@type": "GeoCoordinates",
-        "latitude": 39.5235519,
-        "longitude": 8.8502942
+        "latitude": 39.526601,
+        "longitude": 8.846315
       }
     },
     "coach": {
@@ -143,7 +144,10 @@
     <!-- ══════════════ HERO ══════════════ -->
     <section class="hero" id="hero">
       <div class="hero__bg" id="heroBg">
-        <img src="assets/img/squadra-2025-26.jpg" alt="La rosa della Polisportiva Strovina, stagione 2025-26, schierata per la foto di squadra" fetchpriority="high">
+        <picture>
+          <source media="(min-width: 821px)" srcset="assets/img/squadra-2025-26@2x.jpg">
+          <img src="assets/img/squadra-2025-26.jpg" alt="La rosa della Polisportiva Strovina, stagione 2025-26, schierata per la foto di squadra" fetchpriority="high">
+        </picture>
       </div>
       <div class="hero__overlay" aria-hidden="true"></div>
 
@@ -289,7 +293,7 @@
             </figure>
             <figure class="societa-photo societa-photo--alt reveal">
               <img src="assets/img/esordio-2012.jpg" alt="L'esordio della Polisportiva Strovina nel 2012: la squadra in maglia giallo-amaranto schierata sul campo in terra battuta" loading="lazy">
-              <figcaption>L'esordio del 2012, sul campo in terra battuta di Strovina</figcaption>
+              <figcaption>L'esordio del 2012</figcaption>
             </figure>
           </div>
         </div>
@@ -478,20 +482,20 @@
               </li>
               <li>
                 <strong>Coordinate GPS</strong>
-                <span>39.5235519, 8.8502942</span>
+                <span>39.526601, 8.846315</span>
               </li>
               <li>
                 <strong>Come arrivare</strong>
                 <span>Da Sanluri: circa 6 km in direzione sud-ovest, verso Sanluri Stato</span>
               </li>
             </ul>
-            <a class="btn btn--amaranto" href="https://www.google.com/maps/dir/?api=1&destination=39.5235519,8.8502942" target="_blank" rel="noopener">Ottieni indicazioni ↗</a>
+            <a class="btn btn--amaranto" href="https://www.google.com/maps/dir/?api=1&destination=39.526601,8.846315" target="_blank" rel="noopener">Ottieni indicazioni ↗</a>
           </div>
 
           <div class="stadium-map reveal">
             <iframe
               title="Mappa dello Strovina Stadium — Borgo Strovina, Sanluri"
-              src="https://maps.google.com/maps?q=39.5235519,8.8502942&z=15&output=embed"
+              src="https://maps.google.com/maps?q=39.526601,8.846315&z=16&output=embed"
               loading="lazy"
               allowfullscreen
               referrerpolicy="no-referrer-when-downgrade"></iframe>

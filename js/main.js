@@ -141,8 +141,9 @@
 
   function onScroll() {
     const y = window.scrollY;
-    header.classList.toggle("is-scrolled", y > 40);
-    toTop.classList.toggle("is-visible", y > 900);
+    // pagine come tesseramento.html non hanno header ne' pulsante "torna su"
+    if (header) header.classList.toggle("is-scrolled", y > 40);
+    if (toTop) toTop.classList.toggle("is-visible", y > 900);
 
     // Parallax leggero sull'hero (solo desktop)
     if (!prefersReducedMotion && heroBg) {
@@ -168,22 +169,24 @@
   const burger = document.getElementById("burger");
   const nav = document.getElementById("nav");
 
-  burger.addEventListener("click", function () {
-    const open = nav.classList.toggle("is-open");
-    burger.classList.toggle("is-open", open);
-    burger.setAttribute("aria-expanded", String(open));
-    burger.setAttribute("aria-label", open ? "Chiudi il menu" : "Apri il menu");
-    document.body.style.overflow = open ? "hidden" : "";
-  });
+  if (burger && nav) {
+    burger.addEventListener("click", function () {
+      const open = nav.classList.toggle("is-open");
+      burger.classList.toggle("is-open", open);
+      burger.setAttribute("aria-expanded", String(open));
+      burger.setAttribute("aria-label", open ? "Chiudi il menu" : "Apri il menu");
+      document.body.style.overflow = open ? "hidden" : "";
+    });
 
-  nav.addEventListener("click", function (e) {
-    if (e.target.classList.contains("nav__link")) {
-      nav.classList.remove("is-open");
-      burger.classList.remove("is-open");
-      burger.setAttribute("aria-expanded", "false");
-      document.body.style.overflow = "";
-    }
-  });
+    nav.addEventListener("click", function (e) {
+      if (e.target.classList.contains("nav__link")) {
+        nav.classList.remove("is-open");
+        burger.classList.remove("is-open");
+        burger.setAttribute("aria-expanded", "false");
+        document.body.style.overflow = "";
+      }
+    });
+  }
 
   /* ── Reveal on scroll (con stagger automatico per gruppi) ── */
   const revealEls = document.querySelectorAll(".reveal");
@@ -289,9 +292,11 @@
   }
 
   /* ── To top ── */
-  toTop.addEventListener("click", function () {
-    window.scrollTo({ top: 0, behavior: prefersReducedMotion ? "auto" : "smooth" });
-  });
+  if (toTop) {
+    toTop.addEventListener("click", function () {
+      window.scrollTo({ top: 0, behavior: prefersReducedMotion ? "auto" : "smooth" });
+    });
+  }
 
   /* ── Anno corrente nel footer ── */
   const yearEl = document.getElementById("year");

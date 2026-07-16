@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Modulo di tesseramento — A.S.D. Polisportiva Strovina</title>
+  <meta name="description" content="Modulo per la raccolta dei dati di tesseramento della A.S.D. Polisportiva Strovina.">
+  <!-- pagina di servizio: non deve finire su Google -->
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#8E1B30">
+
+  <link rel="icon" type="image/png" href="assets/img/favicon.png">
+  <link rel="apple-touch-icon" href="assets/img/favicon.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Barlow:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/tesseramento.css">
+</head>
+<body class="page-form">
+
+  <main id="top">
+
+    <!-- ══════════════ INTRO ══════════════ -->
+    <section class="form-hero">
+      <div class="container">
+        <p class="section__kicker reveal">Stagione 2026-27</p>
+        <h1 class="form-hero__title reveal">Modulo di <em>tesseramento</em></h1>
+        <p class="form-hero__sub reveal">
+          Compila i campi qui sotto e carica il documento d'identità.
+        </p>
+        <p class="form-hero__hint reveal">I campi con <span class="req-mark">*</span> sono obbligatori.</p>
+      </div>
+    </section>
+
+    <!-- ══════════════ FORM ══════════════ -->
+    <section class="section section--cream form-section">
+      <div class="container container--narrow">
+
+        <form class="tform" id="tform" novalidate>
+
+          <!-- ─── Anagrafica ─── -->
+          <fieldset class="tform__group reveal">
+            <legend class="tform__legend"><span class="tform__step">1</span> Dati anagrafici</legend>
+
+            <div class="tform__row">
+              <div class="field">
+                <label for="nome">Nome <span class="req-mark">*</span></label>
+                <input type="text" id="nome" name="nome" autocomplete="given-name" required maxlength="60">
+                <p class="field__error" data-error-for="nome"></p>
+              </div>
+              <div class="field">
+                <label for="cognome">Cognome <span class="req-mark">*</span></label>
+                <input type="text" id="cognome" name="cognome" autocomplete="family-name" required maxlength="60">
+                <p class="field__error" data-error-for="cognome"></p>
+              </div>
+            </div>
+
+            <div class="tform__row">
+              <div class="field">
+                <label for="dataNascita">Data di nascita <span class="req-mark">*</span></label>
+                <input type="date" id="dataNascita" name="dataNascita" autocomplete="bday" required min="1930-01-01">
+                <p class="field__error" data-error-for="dataNascita"></p>
+              </div>
+              <div class="field">
+                <label for="luogoNascita">Luogo di nascita <span class="req-mark">*</span></label>
+                <input type="text" id="luogoNascita" name="luogoNascita" placeholder="Comune di nascita" required maxlength="80">
+                <p class="field__error" data-error-for="luogoNascita"></p>
+              </div>
+            </div>
+
+            <div class="tform__row tform__row--1-2">
+              <div class="field">
+                <label for="provNascita">Provincia di nascita</label>
+                <input type="text" id="provNascita" name="provNascita" placeholder="SU" maxlength="2" class="input--upper input--short">
+                <p class="field__hint">Sigla, es. SU. Per chi è nato all'estero, scrivi lo Stato nel campo qui sopra.</p>
+              </div>
+              <div class="field">
+                <label for="codiceFiscale">Codice fiscale <span class="req-mark">*</span></label>
+                <input type="text" id="codiceFiscale" name="codiceFiscale" required
+                       class="input--upper input--mono" autocomplete="off" autocapitalize="characters"
+                       spellcheck="false" placeholder="RSSMRA85M01H501Q">
+                <p class="field__error" data-error-for="codiceFiscale"></p>
+              </div>
+            </div>
+          </fieldset>
+
+          <!-- ─── Residenza ─── -->
+          <fieldset class="tform__group reveal">
+            <legend class="tform__legend"><span class="tform__step">2</span> Residenza</legend>
+
+            <div class="field">
+              <label for="indirizzo">Indirizzo <span class="req-mark">*</span></label>
+              <input type="text" id="indirizzo" name="indirizzo" placeholder="Via e numero civico" autocomplete="street-address" required maxlength="120">
+              <p class="field__error" data-error-for="indirizzo"></p>
+            </div>
+
+            <div class="tform__row tform__row--3">
+              <div class="field">
+                <label for="comune">Comune <span class="req-mark">*</span></label>
+                <input type="text" id="comune" name="comune" autocomplete="address-level2" required maxlength="80">
+                <p class="field__error" data-error-for="comune"></p>
+              </div>
+              <div class="field">
+                <label for="provincia">Provincia</label>
+                <input type="text" id="provincia" name="provincia" placeholder="SU" maxlength="2" class="input--upper">
+              </div>
+              <div class="field">
+                <label for="cap">CAP</label>
+                <input type="text" id="cap" name="cap" placeholder="09025" inputmode="numeric" maxlength="5" autocomplete="postal-code">
+                <p class="field__error" data-error-for="cap"></p>
+              </div>
+            </div>
+          </fieldset>
+
+          <!-- ─── Contatti ─── -->
+          <fieldset class="tform__group reveal">
+            <legend class="tform__legend"><span class="tform__step">3</span> Contatti</legend>
+            <p class="tform__note">Servono solo a richiamarti se manca qualcosa nella pratica.</p>
+
+            <div class="tform__row">
+              <div class="field">
+                <label for="telefono">Telefono</label>
+                <!-- niente maxlength: conterebbe i caratteri, non le cifre, e su un
+                     incolla tipo "+39 340 088 2161" taglierebbe via meta' numero.
+                     Il tetto di 12 cifre lo mette tesseramento.js -->
+                <input type="tel" id="telefono" name="telefono" placeholder="3400000000"
+                       autocomplete="tel" inputmode="numeric">
+              </div>
+              <div class="field">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" placeholder="nome@esempio.it" autocomplete="email" maxlength="120">
+                <p class="field__error" data-error-for="email"></p>
+              </div>
+            </div>
+          </fieldset>
+
+          <!-- ─── Squadra ─── -->
+          <fieldset class="tform__group reveal">
+            <legend class="tform__legend"><span class="tform__step">4</span> Squadra e materiale</legend>
+
+            <div class="tform__row">
+              <div class="field">
+                <label for="ruolo">Ruolo <span class="req-mark">*</span></label>
+                <div class="select-wrap">
+                  <select id="ruolo" name="ruolo" required>
+                    <option value="" selected disabled>Scegli il ruolo…</option>
+                    <option>Portiere</option>
+                    <option>Difensore</option>
+                    <option>Centrocampista</option>
+                    <option>Attaccante</option>
+                    <option>Allenatore</option>
+                    <option>Dirigente</option>
+                    <option>Staff</option>
+                  </select>
+                </div>
+                <p class="field__error" data-error-for="ruolo"></p>
+              </div>
+              <div class="field">
+                <label for="taglia">Taglia divisa <span class="req-mark">*</span></label>
+                <div class="select-wrap">
+                  <select id="taglia" name="taglia" required>
+                    <option value="" selected disabled>Scegli la taglia…</option>
+                    <option>XS</option>
+                    <option>S</option>
+                    <option>M</option>
+                    <option>L</option>
+                    <option>XL</option>
+                    <option>XXL</option>
+                    <option>XXXL</option>
+                  </select>
+                </div>
+                <p class="field__error" data-error-for="taglia"></p>
+              </div>
+            </div>
+          </fieldset>
+
+          <!-- ─── Documento ─── -->
+          <fieldset class="tform__group reveal">
+            <legend class="tform__legend"><span class="tform__step">5</span> Documento d'identità</legend>
+            <p class="tform__note">
+              Carta d'identità o patente. Le foto vengono rimpicciolite in automatico dal tuo telefono
+              prima dell'invio: non serve che tu faccia niente, anche se lo scatto è pesante.
+            </p>
+
+            <div class="tform__row">
+              <!-- Documento fronte -->
+              <div class="field field--file">
+                <label for="docFronte">Fronte <span class="req-mark">*</span></label>
+                <div class="dropzone" data-drop-for="docFronte">
+                  <input type="file" id="docFronte" name="docFronte" accept="image/*,application/pdf" required>
+                  <div class="dropzone__empty">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="2"/><circle cx="8" cy="11" r="2"/><path d="M14 10h5M14 14h5M4.5 17c.8-1.7 2-2.5 3.5-2.5s2.7.8 3.5 2.5"/></svg>
+                    <strong>Carica il fronte</strong>
+                    <span>JPG o PDF</span>
+                  </div>
+                  <div class="dropzone__preview" hidden>
+                    <img alt="Anteprima del fronte del documento caricato">
+                    <div class="dropzone__meta"><strong class="dropzone__name"></strong><span class="dropzone__size"></span></div>
+                    <button type="button" class="dropzone__clear" aria-label="Rimuovi il file">✕</button>
+                  </div>
+                </div>
+                <p class="field__error" data-error-for="docFronte"></p>
+              </div>
+
+              <!-- Documento retro -->
+              <div class="field field--file">
+                <label for="docRetro">Retro</label>
+                <div class="dropzone" data-drop-for="docRetro">
+                  <input type="file" id="docRetro" name="docRetro" accept="image/*,application/pdf">
+                  <div class="dropzone__empty">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M6 9h12M6 13h12M6 17h7"/></svg>
+                    <strong>Carica il retro</strong>
+                    <span>Salta questo campo se il documento è un PDF unico</span>
+                  </div>
+                  <div class="dropzone__preview" hidden>
+                    <img alt="Anteprima del retro del documento caricato">
+                    <div class="dropzone__meta"><strong class="dropzone__name"></strong><span class="dropzone__size"></span></div>
+                    <button type="button" class="dropzone__clear" aria-label="Rimuovi il file">✕</button>
+                  </div>
+                </div>
+                <p class="field__error" data-error-for="docRetro"></p>
+              </div>
+            </div>
+          </fieldset>
+
+          <!-- ─── Consenso ─── -->
+          <fieldset class="tform__group tform__group--consent reveal">
+            <legend class="tform__legend"><span class="tform__step">6</span> Consenso</legend>
+
+            <label class="check" for="privacy">
+              <input type="checkbox" id="privacy" name="privacy" required>
+              <span class="check__box" aria-hidden="true"></span>
+              <span class="check__text">
+                Autorizzo la A.S.D. Polisportiva Strovina a trattare i miei dati personali e i documenti
+                caricati per il solo tesseramento FIGC e la gestione dell'attività sportiva.
+                <span class="req-mark">*</span>
+              </span>
+            </label>
+            <p class="field__error" data-error-for="privacy"></p>
+          </fieldset>
+
+          <!-- honeypot: invisibile a te, irresistibile per i bot -->
+          <div class="hp" aria-hidden="true">
+            <label for="sitoWeb">Non compilare questo campo</label>
+            <input type="text" id="sitoWeb" name="sitoWeb" tabindex="-1" autocomplete="off">
+          </div>
+
+          <!-- ─── Invio ─── -->
+          <div class="tform__submit reveal">
+            <button type="submit" class="btn btn--amaranto btn--big" id="submitBtn">
+              <span class="btn__label">Invia il modulo</span>
+              <span class="btn__spinner" aria-hidden="true"></span>
+            </button>
+            <p class="tform__status" id="formStatus" role="status" aria-live="polite"></p>
+          </div>
+        </form>
+
+        <!-- ─── Schermata di conferma ─── -->
+        <div class="tform-done" id="formDone" hidden>
+          <div class="tform-done__badge" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+          </div>
+          <h2>Modulo inviato</h2>
+          <p id="doneMsg">I tuoi dati sono arrivati alla segreteria della Strovina. Ti contattiamo noi se serve altro.</p>
+          <div class="tform-done__actions">
+            <a class="btn btn--ghost-dark" href="index.html">Torna al sito</a>
+            <button type="button" class="btn btn--giallo" id="againBtn">Compila un altro modulo</button>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- ══════════════ FOOTER ══════════════ -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <img src="assets/img/logo-web.png" alt="Stemma A.S.D. Polisportiva Strovina" width="86" height="86" loading="lazy">
+        <p class="footer__motto">Incontrarsi, stare insieme e, grazie allo sport,<br>far crescere la comunità di Sanluri Stato.</p>
+      </div>
+      <nav class="footer__nav" aria-label="Navigazione footer">
+        <a href="index.html#stagione">Stagione</a>
+        <a href="index.html#societa">La Società</a>
+        <a href="index.html#squadra">Squadra</a>
+        <a href="index.html#stadium">Stadium</a>
+        <a href="index.html#gallery">Gallery</a>
+        <a href="index.html#sponsor">Sponsor</a>
+        <a href="index.html#contatti">Contatti</a>
+      </nav>
+      <div class="footer__meta">
+        <p>A.S.D. Polisportiva Strovina · fondata il 12 aprile 2012<br>
+        Piazza Demontis snc, 09025 Sanluri (SU)</p>
+        <p class="footer__fiscal">P.IVA / C.F.: —</p>
+      </div>
+    </div>
+    <div class="footer__bar">
+      <p>© <span id="year">2026</span> A.S.D. Polisportiva Strovina, Stai, dal 2012. Tutti i diritti riservati.</p>
+    </div>
+  </footer>
+
+  <button class="to-top" id="toTop" aria-label="Torna in cima">↑</button>
+
+  <script src="js/main.js"></script>
+  <script src="js/tesseramento.js"></script>
+</body>
+</html>
