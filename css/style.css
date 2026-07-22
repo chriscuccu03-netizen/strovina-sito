@@ -1260,6 +1260,14 @@ section[id], [id="contatti"] { scroll-margin-top: 1rem; }
   font-size: .82rem;
   color: rgba(250, 245, 233, .5);
 }
+.footer__credit { margin-top: .4rem; color: rgba(250, 245, 233, .4); }
+.footer__credit a {
+  color: rgba(250, 245, 233, .7);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  transition: color var(--transition);
+}
+.footer__credit a:hover { color: var(--giallo); }
 
 /* ═══════════ TO TOP ═══════════ */
 .to-top {
