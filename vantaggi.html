@@ -10,7 +10,7 @@
 
   <!-- Open Graph -->
   <meta property="og:title" content="Un vantaggio riservato ai soci della Strovina">
-  <meta property="og:description" content="Risparmia sulle spese che fai già ogni giorno. Gratis, senza vincoli. Guarda il video: bastano due minuti.">
+  <meta property="og:description" content="Risparmia sulle spese che fai già ogni giorno. Gratis, senza vincoli. Guarda il video per capire come funziona.">
   <meta property="og:type" content="website">
 
   <link rel="icon" type="image/png" href="assets/img/favicon.png">
@@ -393,16 +393,32 @@
       flex-direction: column;
       gap: 1rem;
     }
-    /* segnaposto in attesa del video */
-    .video-soon {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-weight: 700;
-      font-size: 1.05rem;
-      letter-spacing: .18em;
-      text-transform: uppercase;
-      color: var(--on-navy-muted);
+    .video-frame video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      background: #000;
     }
-    /* Quando avrai il video: sostituisci il contenuto di .video-frame con l'iframe/video */
+    /* copertina cliccabile: nascosta se il JS è disattivato, così resta il player nudo */
+    .video-cover {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      /* velo scuro sopra l'anteprima: la foto si vede, il pulsante resta leggibile */
+      background: linear-gradient(160deg, rgba(42,11,21,.42), rgba(18,4,10,.78));
+      border: 0;
+      padding: 0;
+      font: inherit;
+      cursor: pointer;
+      transition: opacity .25s ease;
+    }
+    .video-cover[hidden] { display: none; }
     .video-play {
       width: 82px;
       height: 82px;
@@ -416,6 +432,11 @@
     }
     .video-wrap:hover .video-play { transform: scale(1.07); }
     .video-play svg { margin-left: 5px; }
+    /* su schermo stretto il cerchio coprirebbe tutta l'anteprima */
+    @media (max-width: 640px) {
+      .video-play { width: 62px; height: 62px; }
+      .video-play svg { width: 23px; height: 26px; }
+    }
     .video-label {
       color: var(--on-navy-muted);
       font-size: .95rem;
@@ -792,23 +813,26 @@
         <div class="hero-copy">
           <h1 class="display">Un vantaggio riservato<br>ai soci della<br><span class="mark-red"><span>Strovina</span></span></h1>
           <p class="lead">Abbiamo attivato una collaborazione che ti permette di risparmiare sulle spese che fai già ogni giorno. <strong>Gratis</strong> e su <strong>oltre 1.000 marchi</strong> che sicuramente già usi ogni giorno. Inoltre, se sei un libero professionista o hai un'attività, ci sono dei vantaggi anche per te.</p>
-          <!-- da riattivare insieme al video:
-          <p class="hero-watch">Guarda il video: bastano due minuti per capire come funziona.</p>
-          -->
+          <p class="hero-watch">Guarda il video: in sette minuti capisci come funziona.</p>
         </div>
 
         <div class="hero-media">
-          <!-- VIDEO — segnaposto. Quando il video della Strovina è pronto, sostituire
-               il contenuto di .video-frame con:
-               <video controls playsinline preload="metadata" poster="URL-ANTEPRIMA.jpg"
-                 style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
-                 <source src="URL-DEL-VIDEO.mp4" type="video/mp4">
-                 Il tuo browser non supporta la riproduzione del video.
-               </video>
-               e togliere il commento alla riga .hero-watch qui sopra. -->
+          <!-- VIDEO — file su Cloudflare R2. La copertina è nascosta di default e viene
+               mostrata dallo script in fondo alla pagina: senza JS resta il player normale. -->
           <div class="video-wrap">
             <div class="video-frame">
-              <span class="video-soon">Video in arrivo</span>
+              <video controls playsinline preload="metadata" poster="assets/img/vantaggi-video-poster.jpg">
+                <source src="https://pub-3604b23a6824458081c3d85bcd7bbb15.r2.dev/presentazione%20strovina.mp4" type="video/mp4">
+                Il tuo browser non supporta la riproduzione del video.
+              </video>
+              <button type="button" class="video-cover" hidden aria-label="Riproduci la presentazione">
+                <span class="video-play" aria-hidden="true">
+                  <svg width="30" height="34" viewBox="0 0 30 34" fill="none" aria-hidden="true">
+                    <path d="M29 15.27a2 2 0 0 1 0 3.46L3 33.73A2 2 0 0 1 0 32V2A2 2 0 0 1 3 .27l26 15Z" fill="#fff"/>
+                  </svg>
+                </span>
+                <span class="video-label">Guarda la presentazione &middot; 7 min</span>
+              </button>
             </div>
           </div>
         </div>
@@ -816,7 +840,6 @@
         <div class="hero-cta">
           <!-- TODO: inserire link registrazione -->
           <a href="#" class="btn btn-cta btn-large"><span>Registrati gratuitamente</span></a>
-          <p class="cta-note">Gratis &middot; Bastano due minuti</p>
         </div>
       </div>
     </div>
@@ -1004,6 +1027,26 @@
   <a class="wa-float" href="https://wa.me/393400882161?text=Ciao%2C%20vengo%20dalla%20pagina%20della%20Strovina%20e%20ho%20una%20domanda%20riguardo%20ai%20vantaggi%2C%20grazie%21" aria-label="Scrivici su WhatsApp">
     <svg width="28" height="28" viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
   </a>
+
+  <!-- copertina del video: mostrata solo se il JS è attivo -->
+  <script>
+    (function () {
+      var frame = document.querySelector('.video-frame');
+      if (!frame) return;
+      var video = frame.querySelector('video');
+      var cover = frame.querySelector('.video-cover');
+      if (!video || !cover) return;
+
+      video.removeAttribute('controls');
+      cover.hidden = false;
+
+      cover.addEventListener('click', function () {
+        cover.hidden = true;
+        video.controls = true;
+        video.play();
+      });
+    })();
+  </script>
 
 </body>
 </html>
