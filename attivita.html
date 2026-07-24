@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Per le attività — Convenzione Strovina</title>
+  <meta name="description" content="Il circuito porta clienti alle attività che ne fanno parte. Visibilità gratuita, clienti che tornano e cashback anche sulle tue spese. Convenzione Strovina.">
+  <!-- pagina in lavorazione: togliere il noindex quando i contenuti sono definitivi -->
+  <meta name="robots" content="noindex, nofollow">
+
+  <meta property="og:title" content="Per le attività — Convenzione Strovina">
+  <meta property="og:description" content="Il circuito porta clienti alle attività che ne fanno parte. Entrare non costa nulla e nella tua zona il posto è ancora libero.">
+  <meta property="og:type" content="website">
+
+  <link rel="icon" type="image/png" href="assets/img/favicon.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,600;0,700;0,800;1,600;1,700;1,800&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ============================================================
+       1. RESET & BASE  (stessi token della home)
+    ============================================================ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --red:        #8E1B30;
+      --red-dark:   #5C0F1F;
+      --red-soft:   #FFDD00;
+      --navy:       #1C070E;
+      --navy-deep:  #12040A;
+      --navy-soft:  #2A0B15;
+      --bg-light:   #ffffff;
+      --bg-gray:    #FAF5E9;
+      --line:       #E7DCC6;
+      --text:       #241318;
+      --text-muted: #6B5A50;
+      --text-faint: #8A7A6E;
+      --on-navy:    #FAF5E9;
+      --on-navy-muted: #BCAA9E;
+      --whatsapp:   #25D366;
+      --whatsapp-dark: #1da851;
+      /* accento arancione (pagina attivita) */
+      --orange:      #FFDD00;
+      --orange-soft: #FFDD00;
+      --orange-ink:  #5C0F1F;
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Outfit', system-ui, -apple-system, sans-serif;
+      color: var(--text);
+      background: var(--bg-light);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+    img { max-width: 100%; display: block; }
+    ::selection { background: var(--red); color: #fff; }
+    :focus-visible { outline: 3px solid var(--red-soft); outline-offset: 3px; }
+
+    /* ============================================================
+       2. UTILITIES
+    ============================================================ */
+    .container { max-width: 1180px; margin: 0 auto; padding: 0 1.5rem; }
+    .container-narrow { max-width: 920px; margin: 0 auto; padding: 0 1.5rem; }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: .65rem;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--orange-ink);
+      margin-bottom: 1rem;
+    }
+    .eyebrow::before { content: ""; width: 26px; height: 4px; background: var(--orange); transform: skewX(-20deg); }
+    .dark .eyebrow, .final-cta .eyebrow { color: var(--orange-soft); }
+    .dark .eyebrow::before, .final-cta .eyebrow::before { background: var(--orange-soft); }
+
+    .grain { position: relative; }
+    .grain::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      opacity: .5;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.04 0'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+    .grain > * { position: relative; z-index: 1; }
+
+    /* ============================================================
+       3. TYPOGRAPHY
+    ============================================================ */
+    .display, .h2 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-style: italic;
+      font-weight: 800;
+      text-transform: uppercase;
+      line-height: .95;
+      letter-spacing: .005em;
+      text-wrap: balance;
+    }
+    .display { font-size: clamp(2.6rem, 5.6vw, 5rem); }
+    .h2 { font-size: clamp(1.9rem, 3.8vw, 3rem); color: var(--navy); }
+    .dark .h2 { color: #fff; }
+    .h3 { font-size: clamp(1.1rem, 1.8vw, 1.25rem); font-weight: 700; line-height: 1.3; color: var(--navy); }
+    .dark .h3 { color: #fff; }
+    .lead { font-size: clamp(1.05rem, 1.6vw, 1.2rem); color: var(--text-muted); }
+    .dark .lead { color: var(--on-navy-muted); }
+
+    .mark-red { display: inline-block; background: var(--orange); color: var(--navy); padding: 0 .18em; transform: skewX(-8deg); }
+    .mark-red > span { display: inline-block; transform: skewX(8deg); }
+
+    /* ============================================================
+       4. BUTTONS
+    ============================================================ */
+    .btn {
+      display: inline-block;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 1.2rem;
+      letter-spacing: .07em;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: .8rem 2rem;
+      border-radius: 4px;
+      transform: skewX(-8deg);
+      transition: background .18s ease, transform .18s ease, box-shadow .18s ease, color .18s ease;
+      cursor: pointer;
+    }
+    .btn > span { display: inline-block; transform: skewX(8deg); }
+    .btn:active { transform: skewX(-8deg) scale(.97); }
+    .btn-cta { background: var(--red); color: #fff; box-shadow: 0 12px 28px rgba(142, 27, 48, .3); }
+    .btn-cta:hover { background: var(--red-dark); transform: skewX(-8deg) translateY(-2px); box-shadow: 0 16px 34px rgba(142, 27, 48, .38); }
+    .btn-large { font-size: 1.45rem; padding: 1rem 3rem; }
+    @media (max-width: 640px) {
+      .btn { font-size: 1.02rem; padding: .7rem 1.4rem; }
+      .btn-large { font-size: 1.1rem; padding: .8rem 1.7rem; }
+    }
+    .btn-whatsapp { background: var(--whatsapp); color: #fff; box-shadow: 0 12px 28px rgba(37, 211, 102, .25); }
+    .btn-whatsapp:hover { background: var(--whatsapp-dark); transform: skewX(-8deg) translateY(-2px); }
+    /* CTA contorno arancione con riempimento */
+    .btn-orange { background: transparent; color: var(--orange-ink); border: 2px solid var(--orange); }
+    .btn-orange:hover { background: var(--orange); color: var(--navy); transform: skewX(-8deg) translateY(-2px); }
+    .dark .btn-orange, .hero .btn-orange, .final-cta .btn-orange { color: var(--orange-soft); border-color: var(--orange-soft); }
+    .dark .btn-orange:hover, .hero .btn-orange:hover, .final-cta .btn-orange:hover { background: var(--orange-soft); color: var(--navy); }
+    .cta-note { margin-top: .9rem; font-size: .88rem; color: var(--text-faint); }
+    .dark .cta-note { color: var(--on-navy-muted); }
+
+    /* ============================================================
+       5. SECTION BASE
+    ============================================================ */
+    section { padding: 5.5rem 0; }
+    section.gray { background: var(--bg-gray); }
+    section.dark { background: var(--navy); color: var(--on-navy); }
+    @media (max-width: 768px) { section { padding: 3.4rem 0; } }
+
+    /* ============================================================
+       6. BACKBAR
+    ============================================================ */
+    .backbar { position: absolute; top: 0; left: 0; right: 0; z-index: 3; padding: 1.4rem 0; }
+    .backbar .container { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+    .back-logo { display: inline-block; }
+    .back-logo img { height: 68px; width: auto; filter: drop-shadow(0 3px 8px rgba(0,0,0,.45)); }
+    .back-link {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700; font-size: 1.05rem; letter-spacing: .1em; text-transform: uppercase;
+      color: var(--on-navy); text-decoration: none;
+      display: inline-flex; align-items: center; gap: .5rem; transition: color .18s ease;
+    }
+    .back-link:hover { color: #fff; }
+    @media (max-width: 560px) {
+      .back-logo img { height: 48px; }
+      .back-link span.txt { display: none; }
+    }
+
+    /* ============================================================
+       7. HERO
+    ============================================================ */
+    .hero {
+      background: linear-gradient(178deg, var(--navy) 55%, var(--navy-deep) 100%);
+      padding: 10rem 0 4.5rem;
+      overflow: hidden;
+      position: relative;
+    }
+    .hero::before {
+      content: "";
+      position: absolute;
+      top: -30%;
+      right: -18%;
+      width: 55%;
+      height: 170%;
+      background: linear-gradient(210deg, rgba(255,221,0,.28) 0%, rgba(255,221,0,.04) 60%, transparent 100%);
+      border-left: 3px solid rgba(255,221,0,.5);
+      transform: skewX(-13deg);
+      pointer-events: none;
+    }
+    .hero .container { position: relative; z-index: 1; }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap: clamp(2.5rem, 5vw, 4.5rem);
+      align-items: center;
+    }
+    .hero-kicker {
+      display: inline-block;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700; font-size: 1.15rem; letter-spacing: .2em; text-transform: uppercase;
+      color: var(--navy); background: var(--orange); border-left: 4px solid var(--orange-ink);
+      padding: .5rem 1.1rem .5rem 1rem; margin-bottom: 1.7rem;
+    }
+    .hero h1 { color: #fff; margin-bottom: 1.5rem; font-size: clamp(2.3rem, 4.2vw, 3.9rem); }
+    .hero h1 .mark-red { font-size: inherit; }
+    .hero .lead { color: var(--on-navy-muted); max-width: 36em; font-size: clamp(1.05rem, 1.4vw, 1.2rem); margin-bottom: 2rem; }
+    .hero .lead strong { color: #fff; font-weight: 600; }
+
+    /* indice numerato a destra */
+    .hero-index { display: flex; flex-direction: column; gap: .75rem; }
+    .hero-index-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700; font-size: 1rem; letter-spacing: .16em; text-transform: uppercase;
+      color: var(--on-navy-muted); margin-bottom: .5rem;
+    }
+    .idx-item {
+      display: flex;
+      align-items: center;
+      gap: 1.1rem;
+      background: rgba(42, 11, 21, .94);
+      border: 1px solid rgba(255,255,255,.14);
+      border-left: 4px solid var(--orange);
+      border-radius: 10px;
+      padding: 1rem 1.3rem;
+      text-decoration: none;
+      transition: background .18s ease, transform .18s ease, border-color .18s ease;
+    }
+    .idx-item:hover { background: rgba(255,221,0,.18); transform: translateX(5px); border-left-color: var(--orange-soft); }
+    .idx-num {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-style: italic; font-weight: 800;
+      font-size: 2rem; line-height: 1; color: var(--orange-soft); min-width: 2ch;
+    }
+    .idx-label { color: #fff; font-weight: 600; font-size: 1.05rem; flex: 1; }
+    .idx-arrow { color: var(--orange-soft); flex-shrink: 0; transition: transform .18s ease; }
+    .idx-item:hover .idx-arrow { transform: translateY(3px); }
+
+    @media (max-width: 900px) { .hero-grid { grid-template-columns: 1fr; gap: 2.4rem; } }
+    @media (max-width: 640px) { .hero { padding: 8rem 0 3.4rem; } }
+
+    /* ============================================================
+       8. BLOCCHI "COSA GUADAGNI"
+    ============================================================ */
+    .gblock .container { display: grid; grid-template-columns: .82fr 1.18fr; gap: 3.5rem; align-items: start; }
+    .gblock-head { position: sticky; top: 2.5rem; }
+    .gnum {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-style: italic; font-weight: 800;
+      font-size: clamp(4rem, 8vw, 6.5rem);
+      line-height: .85;
+      color: var(--orange-ink);
+      margin-bottom: 1rem;
+    }
+    .dark .gnum { color: var(--orange-soft); }
+    .gblock-head .h2 { margin-top: .3rem; }
+
+    .gblock-body > p { color: var(--text-muted); font-size: 1.08rem; max-width: 40em; }
+    .gblock-body > p + p { margin-top: 1rem; }
+    .dark .gblock-body > p { color: var(--on-navy-muted); }
+
+    /* occhiello sopra il titolo del blocco */
+    .gblock-occhiello {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700; font-size: .95rem; letter-spacing: .14em; text-transform: uppercase;
+      color: var(--text-faint); margin-bottom: .5rem;
+    }
+    .dark .gblock-occhiello { color: var(--on-navy-muted); }
+
+    /* box "esempio concreto" (blocco 04) */
+    .example-box {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-left: 5px solid var(--orange);
+      border-radius: 10px;
+      padding: 1.5rem 1.8rem;
+      margin: 1.8rem 0 .2rem;
+      max-width: 46em;
+      box-shadow: 0 8px 24px rgba(28, 7, 14, .06);
+    }
+    .example-box .ex-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700; font-size: 1rem; letter-spacing: .14em; text-transform: uppercase;
+      color: var(--orange-ink); margin-bottom: .5rem;
+    }
+    .example-box p { color: var(--text-muted); font-size: 1.05rem; }
+    .example-box .ex-amount { color: var(--orange-ink); font-weight: 800; font-size: 1.12em; }
+
+    /* griglia "aspetti" (3 colonne) */
+    .aspect-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.1rem; margin: 1.8rem 0; }
+    .aspect {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-top: 3px solid var(--orange);
+      border-radius: 10px;
+      padding: 1.4rem 1.4rem 1.5rem;
+      box-shadow: 0 8px 24px rgba(28, 7, 14, .05);
+    }
+    .aspect .h3 { margin-bottom: .45rem; }
+    .aspect p { color: var(--text-muted); font-size: .96rem; }
+    @media (max-width: 760px) { .aspect-grid { grid-template-columns: 1fr; } }
+
+    /* box "in sintesi" (numeri chiave) */
+    .sintesi {
+      background: var(--navy);
+      border-radius: 12px;
+      border-left: 4px solid var(--orange);
+      padding: 1.5rem 1.8rem 1.5rem;
+    }
+    .sintesi-lbl {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700; font-size: 1rem; letter-spacing: .16em; text-transform: uppercase;
+      color: var(--orange-soft); margin-bottom: .2rem;
+    }
+    .sintesi .blist { margin: .8rem 0 0; }
+
+    /* liste bullet */
+    .blist { list-style: none; margin: 1.8rem 0 2rem; display: flex; flex-direction: column; gap: .8rem; }
+    .blist li { position: relative; padding-left: 1.9rem; color: var(--text-muted); font-size: 1.02rem; }
+    .blist li::before {
+      content: "";
+      position: absolute; left: 0; top: .52em;
+      width: 12px; height: 12px;
+      background: var(--orange);
+      transform: skewX(-10deg);
+    }
+    .blist li strong { color: var(--text); }
+    .dark .blist li { color: var(--on-navy-muted); }
+    .dark .blist li::before { background: var(--orange-soft); }
+    .dark .blist li strong { color: #fff; }
+
+    .gblock-cta { margin-top: 1.6rem; }
+
+    @media (max-width: 860px) {
+      .gblock .container { grid-template-columns: 1fr; gap: 1.4rem; }
+      .gblock-head { position: static; }
+      .gnum { margin-bottom: .4rem; }
+    }
+
+    /* ============================================================
+       9. CTA FINALE
+    ============================================================ */
+    .final-cta { background: linear-gradient(178deg, var(--navy) 45%, var(--navy-deep) 100%); text-align: center; overflow: hidden; padding: 6rem 0 6.5rem; }
+    .final-cta .eyebrow { justify-content: center; }
+    .final-cta .h2 { color: #fff; font-size: clamp(2.1rem, 4.4vw, 3.4rem); margin-bottom: 1.3rem; }
+    .final-cta .lead { color: var(--on-navy-muted); max-width: 46em; margin: 0 auto 2.2rem; }
+    .final-cta .cta-note { margin-top: 1rem; }
+
+    /* ============================================================
+       10. FOOTER + WHATSAPP
+    ============================================================ */
+    footer { background: var(--navy-deep); padding: 2.6rem 0; border-top: 4px solid var(--orange); }
+    .footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 1.6rem; flex-wrap: wrap; }
+    .footer-logo { display: inline-block; }
+    .footer-logo img { height: 76px; width: auto; filter: drop-shadow(0 3px 8px rgba(0,0,0,.45)); }
+    .footer-text { color: var(--on-navy-muted); font-size: .88rem; line-height: 1.7; text-align: right; }
+    .footer-text a { color: var(--on-navy); text-decoration: none; }
+    .footer-text strong { color: var(--on-navy); font-weight: 700; letter-spacing: .02em; }
+    .footer-text a:hover { text-decoration: underline; }
+    @media (max-width: 640px) {
+      .footer-inner { flex-direction: column; }
+      .footer-text { text-align: center; }
+    }
+
+    .wa-float {
+      position: fixed; bottom: 22px; right: 22px; z-index: 50;
+      width: 56px; height: 56px; border-radius: 50%;
+      background: var(--whatsapp);
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 10px 26px rgba(18, 4, 10, .35);
+      transition: transform .2s ease, background .2s ease;
+    }
+    .wa-float:hover { transform: scale(1.08); background: var(--whatsapp-dark); }
+    .wa-float:active { transform: scale(.96); }
+  </style>
+</head>
+<body>
+
+  <!-- ============ HERO ============ -->
+  <section class="hero grain">
+    <div class="backbar">
+      <div class="container">
+        <a class="back-logo" href="vantaggi.html" aria-label="Torna alla home della Strovina">
+          <img src="assets/img/logo-web.png" alt="Stemma A.S.D. Polisportiva Strovina">
+        </a>
+        <a class="back-link" href="vantaggi.html">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+          <span class="txt">Torna alla home</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="hero-grid">
+        <div class="hero-copy">
+          <span class="hero-kicker">Per le attività e i punti vendita</span>
+          <h1 class="display">Il circuito porta clienti alle attività che <span class="mark-red"><span>ne fanno parte</span></span></h1>
+          <p class="lead">Migliaia di esercenti già dentro e una community di <strong>oltre 120.000 persone</strong> che paga e riceve cashback immediato. Entrare non costa nulla.</p>
+          <!-- TODO: inserire numero WhatsApp -->
+          <a href="https://wa.me/393400882161?text=Ciao%2C%20vengo%20dalla%20pagina%20della%20Strovina%20e%20ho%20una%20domanda%20riguardo%20ai%20vantaggi%2C%20grazie%21" class="btn btn-whatsapp btn-large"><span>Scrivici per saperne di più</span></a>
+        </div>
+
+        <div class="hero-index">
+          <div class="hero-index-label">I vantaggi &middot; tocca per approfondire</div>
+          <a class="idx-item" href="#b01">
+            <span class="idx-num">01</span>
+            <span class="idx-label">Visibilità gratuita</span>
+            <svg class="idx-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
+          </a>
+          <a class="idx-item" href="#b02">
+            <span class="idx-num">02</span>
+            <span class="idx-label">Clienti che tornano</span>
+            <svg class="idx-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
+          </a>
+          <a class="idx-item" href="#b03">
+            <span class="idx-num">03</span>
+            <span class="idx-label">La tua rete di guadagno</span>
+            <svg class="idx-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
+          </a>
+          <a class="idx-item" href="#b04">
+            <span class="idx-num">04</span>
+            <span class="idx-label">Welfare per i dipendenti</span>
+            <svg class="idx-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 01 ============ -->
+  <section class="gblock" id="b01">
+    <div class="container">
+      <div class="gblock-head">
+        <div class="gnum">01</div>
+        <span class="eyebrow">Cosa guadagni</span>
+        <h2 class="h2">Visibilità gratuita su un circuito che cresce ogni giorno</h2>
+      </div>
+      <div class="gblock-body">
+        <p>Entri in un ecosistema che ti rende più visibile e più attrattivo senza spendere un euro in pubblicità. La tua attività finisce sul portale del Marketplace con geolocalizzazione e nei canali della community, dove ogni giorno le persone cercano dove spendere. La comunicazione la fa il circuito, non il tuo negozio da solo.</p>
+        <ul class="blist">
+          <li><strong>Pagina dedicata sul portale Marketplace</strong> con foto, descrizione, posizione e contatti.</li>
+          <li><strong>Geolocalizzazione:</strong> ti trova chi cerca un'attività come la tua nella tua zona.</li>
+          <li><strong>Promozioni e offerte</strong> pubblicate sui canali della community della tua area.</li>
+          <li><strong>Zero canone, zero fee di ingresso.</strong></li>
+        </ul>
+        <div class="gblock-cta">
+          <!-- TODO: inserire numero WhatsApp -->
+          <a href="https://wa.me/393400882161?text=Ciao%2C%20vengo%20dalla%20pagina%20della%20Strovina%20e%20ho%20una%20domanda%20riguardo%20ai%20vantaggi%2C%20grazie%21" class="btn btn-orange"><span>Scrivici per saperne di più</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 02 ============ -->
+  <section class="gblock gray" id="b02">
+    <div class="container">
+      <div class="gblock-head">
+        <div class="gnum">02</div>
+        <span class="eyebrow">Cosa guadagni</span>
+        <h2 class="h2">Clienti che tornano. E che spendono di più.</h2>
+      </div>
+      <div class="gblock-body">
+        <p>Ogni cliente che paga con la card del circuito riceve il 5% di cashback immediato. Sa che da te recupera valore reale, e questo lo riporta nel tuo negozio invece che dal concorrente di fronte. Non è una promozione che devi finanziare tu: è il circuito a rendere conveniente scegliere te.</p>
+        <ul class="blist">
+          <li><strong>5% di cashback immediato</strong> per il cliente che paga con la card del circuito.</li>
+          <li><strong>Scontrino medio e frequenza più alti:</strong> il cliente preferisce gli esercenti convenzionati.</li>
+          <li><strong>Fidelizzazione senza tessere punti,</strong> senza software da gestire e senza premi da tenere a magazzino.</li>
+          <li><strong>Tagli la concorrenza attorno a te:</strong> a parità di prodotto, il membro della community viene da te.</li>
+        </ul>
+        <div class="gblock-cta">
+          <!-- TODO: inserire numero WhatsApp -->
+          <a href="https://wa.me/393400882161?text=Ciao%2C%20vengo%20dalla%20pagina%20della%20Strovina%20e%20ho%20una%20domanda%20riguardo%20ai%20vantaggi%2C%20grazie%21" class="btn btn-orange"><span>Scrivici per saperne di più</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 03 — la rete di guadagno (dark, in evidenza) ============ -->
+  <section class="gblock dark grain" id="b03">
+    <div class="container">
+      <div class="gblock-head">
+        <div class="gnum">03</div>
+        <span class="eyebrow">Cosa guadagni</span>
+        <h2 class="h2">Da esercente del circuito a costruttore del circuito</h2>
+      </div>
+      <div class="gblock-body">
+        <p>Quello che è convenuto a te è convenuto identico al bar accanto, al tuo fornitore, al collega che ha il negozio in centro. Ognuno di loro ci guadagna a entrare, esattamente per i motivi che hai visto qui sopra.</p>
+        <p>Ogni nuova attività che entra nel Marketplace grazie a te genera un 1% di cashback ricorrente sul suo intero transato. Non stai vendendo niente: stai portando a un collega esattamente quello che è convenuto a te.</p>
+        <ul class="blist">
+          <li><strong>1% sul transato</strong> di ogni attività che entra nel circuito grazie a te.</li>
+          <li><strong>Ricorrente nel tempo,</strong> non un premio una tantum.</li>
+          <li><strong>Costruzione progressiva,</strong> compatibile con la gestione quotidiana del tuo negozio.</li>
+          <li><strong>Formazione e supporto inclusi</strong> dalla community: coach, materiali, eventi.</li>
+        </ul>
+        <div class="gblock-cta">
+          <!-- TODO: inserire numero WhatsApp -->
+          <a href="https://wa.me/393400882161?text=Ciao%2C%20vengo%20dalla%20pagina%20della%20Strovina%20e%20ho%20una%20domanda%20riguardo%20ai%20vantaggi%2C%20grazie%21" class="btn btn-orange"><span>Scrivici per saperne di più</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 04 — welfare dipendenti ============ -->
+  <!-- NOTA COPY: la soglia esentasse art. 51 TUIR e l'eventuale moltiplicatore del costo del lavoro vanno confermati/aggiornati con un consulente del lavoro prima di andare live. -->
+  <section class="gblock gray" id="b04">
+    <div class="container">
+      <div class="gblock-head">
+        <div class="gnum">04</div>
+        <span class="eyebrow">Cosa guadagni</span>
+        <p class="gblock-occhiello">Se hai dipendenti</p>
+        <h2 class="h2">Dare di più ai tuoi dipendenti ti costa il doppio. Così no.</h2>
+      </div>
+      <div class="gblock-body">
+        <p>Se hai anche solo due persone che lavorano con te, conosci il problema: per mettere 100 &euro; netti in più in busta paga, all'azienda ne servono molti di più tra contributi e imposte. Paghi il doppio perché al dipendente ne arrivi metà.</p>
+        <p>Il welfare aziendale previsto dall'art. 51 TUIR risolve esattamente questo: quello che eroghi è deducibile per l'azienda ed esentasse per il dipendente entro le soglie di legge. Il valore arriva intero.</p>
+        <p>La differenza rispetto alle piattaforme welfare tradizionali è la fee: quelle trattengono una percentuale su tutto il valore che carichi. Qui non c'è. E c'è un pezzo in più: il dipendente riceve un buono libero, non vincolato per categoria, che gli genera cashback quando lo utilizza. Riceve 100 e ne vale più di 100.</p>
+
+        <div class="aspect-grid">
+          <div class="aspect">
+            <h3 class="h3">Costa meno di un aumento</h3>
+            <p>Deducibile per l'azienda, esentasse per il dipendente entro le soglie art. 51 TUIR. A parità di spesa per te, in tasca a lui arriva molto di più.</p>
+          </div>
+          <div class="aspect">
+            <h3 class="h3">Nessuna fee di piattaforma</h3>
+            <p>Le piattaforme welfare classiche trattengono una percentuale sul valore erogato. Qui il valore che carichi è il valore che arriva.</p>
+          </div>
+          <div class="aspect">
+            <h3 class="h3">Sceglie lui, non tu</h3>
+            <p>Buoni liberi su centinaia di brand, non voucher vincolati per categoria. E ogni volta che li usa, guadagna cashback: il benefit vale più del suo valore nominale.</p>
+          </div>
+        </div>
+
+        <div class="sintesi dark">
+          <div class="sintesi-lbl">In sintesi</div>
+          <ul class="blist">
+            <li><strong>Deducibile per l'azienda,</strong> esentasse per il dipendente entro le soglie art. 51 TUIR.</li>
+            <li><strong>Zero fee di piattaforma</strong> sul valore erogato.</li>
+            <li><strong>Buoni liberi</strong> su centinaia di brand, spendibili online e in negozio.</li>
+            <li><strong>Cashback anche per il dipendente</strong> quando li utilizza.</li>
+            <li><strong>Strumento di retention</strong> in un mercato dove trattenere il personale costa più che assumerlo.</li>
+          </ul>
+        </div>
+
+        <div class="gblock-cta">
+          <!-- TODO: inserire numero WhatsApp -->
+          <a href="https://wa.me/393400882161?text=Ciao%2C%20vengo%20dalla%20pagina%20della%20Strovina%20e%20ho%20una%20domanda%20riguardo%20ai%20vantaggi%2C%20grazie%21" class="btn btn-orange"><span>Scrivici per saperne di più</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CTA FINALE ============ -->
+  <section class="final-cta grain">
+    <div class="container-narrow">
+      <span class="eyebrow">L'unico passo da fare</span>
+      <h2 class="h2">Vuoi capire se ha senso<br>per la tua attività?</h2>
+      <p class="lead">Entrare nel circuito è gratuito: niente fee di ingresso, niente canone mensile, niente impegno minimo. Ti chiediamo solo quindici minuti per guardare insieme i numeri della tua attività. Se non ti convince, va bene così.</p>
+      <!-- TODO: inserire numero WhatsApp -->
+      <a href="https://wa.me/393400882161?text=Ciao%2C%20vengo%20dalla%20pagina%20della%20Strovina%20e%20ho%20una%20domanda%20riguardo%20ai%20vantaggi%2C%20grazie%21" class="btn btn-whatsapp btn-large"><span>Scrivici per saperne di più</span></a>
+      <p class="cta-note">Nessuna pressione commerciale. Ti spieghiamo il modello, vedi i numeri, decidi tu.</p>
+    </div>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <footer>
+    <div class="container footer-inner">
+      <div class="footer-logo">
+        <img src="assets/img/logo-web.png" alt="Stemma A.S.D. Polisportiva Strovina">
+      </div>
+      <div class="footer-text">
+        <strong>A.S.D. Polisportiva Strovina</strong><br>
+        <a href="mailto:asdpolisportivastrovina@gmail.com">asdpolisportivastrovina@gmail.com</a><br>
+        <a href="index.html">asdpolisportivastrovina.com</a><br>
+        Tel. <a href="tel:+393400882161">+39 340 088 2161</a><br>
+        Piazza Demontis snc, 09025 Sanluri (SU)<br>
+        Terza Categoria FIGC &middot; Delegazione di Oristano
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============ WHATSAPP FLOTTANTE ============ -->
+  <!-- TODO: inserire numero WhatsApp -->
+  <a class="wa-float" href="https://wa.me/393400882161?text=Ciao%2C%20vengo%20dalla%20pagina%20della%20Strovina%20e%20ho%20una%20domanda%20riguardo%20ai%20vantaggi%2C%20grazie%21" aria-label="Scrivici su WhatsApp">
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
+  </a>
+
+</body>
+</html>

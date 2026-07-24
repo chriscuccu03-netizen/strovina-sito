@@ -54,7 +54,6 @@ mostra un avviso invece di inviare.
 
 | Cosa | Dove |
 |---|---|
-| **Dominio definitivo** | `index.html` (canonical, og:image, JSON-LD), `robots.txt`, `sitemap.xml` |
 | **Rosa 2026-27** | sezione `#squadra`, blocco `.rosa-placeholder` |
 | **Prossimi incontri (carosello hero)** | `js/main.js`, array `PROSSIME_PARTITE` in cima al file — ordinamento per data automatico, le partite passate spariscono da sole |
 | **Calendario / prossima partita** | sezione `#stagione`, card `.match-card--next` |

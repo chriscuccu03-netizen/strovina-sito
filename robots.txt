@@ -1,5 +1,4 @@
 User-agent: *
 Allow: /
 
-# TODO: sostituire con il dominio definitivo quando registrato
-Sitemap: https://strovina-sito.vercel.app/sitemap.xml
+Sitemap: https://www.asdpolisportivastrovina.com/sitemap.xml
