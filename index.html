@@ -98,23 +98,7 @@
 </head>
 <body>
 
-  <!-- ══════════════ TOPBAR + HEADER ══════════════ -->
-  <div class="topbar">
-    <div class="topbar__inner">
-      <span class="topbar__note">Terza Categoria FIGC · Delegazione di Oristano</span>
-      <div class="topbar__right">
-        <a href="https://www.facebook.com/AsdPolisportivaStrovina" target="_blank" rel="noopener" aria-label="Facebook">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
-        </a>
-        <a href="https://www.instagram.com/strovina_polisportiva/" target="_blank" rel="noopener" aria-label="Instagram">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor"/></svg>
-        </a>
-        <i class="topbar__sep" aria-hidden="true"></i>
-        <span class="topbar__stai">Stai 2012</span>
-      </div>
-    </div>
-  </div>
-
+  <!-- ══════════════ HEADER ══════════════ -->
   <header class="header" id="header">
     <div class="header__inner">
       <a href="#top" class="header__brand" aria-label="Torna all'inizio — A.S.D. Polisportiva Strovina">
@@ -202,8 +186,8 @@
           <span id="mbDate">Data da definire</span>
         </div>
         <div class="matchbar__match">
-          <div class="matchbar__team">
-            <img src="assets/img/logo-web.png" alt="Stemma Strovina" class="matchbar__crest">
+          <div class="matchbar__team" id="mbHome">
+            <img src="assets/img/logo-web.png" alt="" class="matchbar__crest">
             <span class="matchbar__name">Strovina</span>
           </div>
           <div class="matchbar__count" aria-label="Conto alla rovescia">
@@ -214,9 +198,9 @@
           </div>
           <!-- separatore visibile solo su mobile, dove il countdown va a capo -->
           <span class="matchbar__vs" aria-hidden="true">VS</span>
-          <div class="matchbar__team matchbar__team--away">
+          <div class="matchbar__team matchbar__team--away" id="mbAway">
             <span class="matchbar__crest matchbar__crest--tbd" aria-hidden="true">?</span>
-            <span class="matchbar__name" id="mbOpp">Da definire</span>
+            <span class="matchbar__name">Da definire</span>
           </div>
         </div>
         <a href="#stagione" class="matchbar__cta">Dettagli →</a>
@@ -230,14 +214,14 @@
         <header class="section__head reveal">
           <p class="section__kicker">Match center</p>
           <h2 class="section__title">La stagione <em>2026-27</em></h2>
-          <p class="section__intro">Terza Categoria FIGC · Delegazione di Oristano, Girone D</p>
+          <p class="section__intro">Terza Categoria FIGC · Delegazione di Oristano, Girone F</p>
         </header>
 
         <div class="match-grid">
-          <!-- Prossima partita (placeholder: calendario da caricare) -->
+          <!-- Prossima partita: riempita da js/main.js (PROSSIME_PARTITE); questo e' il segnaposto a fine stagione -->
           <article class="match-card match-card--next reveal">
             <div class="match-card__tag">Prossima partita</div>
-            <div class="match-card__teams">
+            <div class="match-card__teams" id="mcTeams">
               <div class="match-team">
                 <img src="assets/img/logo-web.png" alt="Stemma Strovina" class="match-team__crest">
                 <span class="match-team__name">Strovina</span>
@@ -251,10 +235,10 @@
               </div>
             </div>
             <div class="match-card__meta">
-              <span class="match-card__date">Data e ora da definire</span>
-              <span class="match-card__venue">Strovina Stadium · Borgo Strovina</span>
+              <span class="match-card__date" id="mcDate">Data e ora da definire</span>
+              <span class="match-card__venue" id="mcVenue">Strovina Stadium · Borgo Strovina</span>
             </div>
-            <p class="match-card__note">⚽ Calendario in aggiornamento, segui i canali social per le prossime convocazioni.</p>
+            <p class="match-card__note" id="mcNote">⚽ Calendario in aggiornamento, segui i canali social per le prossime convocazioni.</p>
           </article>
 
           <a class="match-media reveal"
@@ -668,13 +652,27 @@
       <div class="footer__meta">
         <p>A.S.D. Polisportiva Strovina · fondata il 12 aprile 2012<br>
         Piazza Demontis snc, 09025 Sanluri (SU)</p>
-        <!-- TODO: inserire P.IVA / Codice Fiscale -->
-        <p class="footer__fiscal">P.IVA / C.F.: —</p>
       </div>
     </div>
     <div class="footer__bar">
       <p>© <span id="year">2026</span> A.S.D. Polisportiva Strovina, Stai, dal 2012. Tutti i diritti riservati.</p>
       <p class="footer__credit">Questo sito è stato realizzato da Christian Cuccu. <a href="https://christiancuccu.com" target="_blank" rel="noopener">Visita il mio sito</a>.</p>
+    </div>
+    <!-- Striscia utility: categoria, social, Stai 2012 (era in cima alla pagina) -->
+    <div class="topbar">
+      <div class="topbar__inner">
+        <span class="topbar__note">Terza Categoria FIGC · Delegazione di Oristano</span>
+        <div class="topbar__right">
+          <a href="https://www.facebook.com/AsdPolisportivaStrovina" target="_blank" rel="noopener" aria-label="Facebook">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          </a>
+          <a href="https://www.instagram.com/strovina_polisportiva/" target="_blank" rel="noopener" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor"/></svg>
+          </a>
+          <i class="topbar__sep" aria-hidden="true"></i>
+          <span class="topbar__stai">Stai 2012</span>
+        </div>
+      </div>
     </div>
   </footer>
 

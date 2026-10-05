@@ -55,13 +55,19 @@ mostra un avviso invece di inviare.
 | Cosa | Dove |
 |---|---|
 | **Rosa 2026-27** | sezione `#squadra`, blocco `.rosa-placeholder` |
-| **Prossimi incontri (carosello hero)** | `js/main.js`, array `PROSSIME_PARTITE` in cima al file — ordinamento per data automatico, le partite passate spariscono da sole |
-| **Calendario / prossima partita** | sezione `#stagione`, card `.match-card--next` |
 | **Link ai siti degli sponsor** | sezione `#sponsor` — i 5 loghi sono inseriti, mancano gli URL |
-| **P.IVA / Codice Fiscale** | footer, `.footer__fiscal` |
+| **P.IVA / Codice Fiscale** | tolta dal footer su richiesta (ottobre 2026); se arriva, rimettere un `<p class="footer__fiscal">` in `.footer__meta` |
 | **Link Tuttocampo diretto** | card campionato in `#stagione` (ID società: 1028079) |
-| **Girone 2026-27** | verificare "Girone D · Oristano" con dato FIGC ufficiale |
 | **Collegamento del modulo a Google** | `js/tesseramento.js`, `CONFIG.ENDPOINT` — vedi `apps-script/ISTRUZIONI.md` |
+
+## Calendario partite
+
+Tutto in cima a `js/main.js`: `SQUADRE` (nomi, stemmi in `assets/img/squadre/<chiave>.png`)
+e `PROSSIME_PARTITE` (22 giornate del Girone F 2026-27). Da lì si riempiono il rail
+"Prossimi incontri", la barra col countdown e la card del match center. Ordinamento
+automatico; al calcio d'inizio la partita sparisce e sale la successiva.
+Se la FIGC sposta una gara basta correggere la sua `data`.
+Gli originali dei loghi (1600px) stanno fuori dal sito, in `Foto/Squadre avversarie/`.
 
 ## Note
 

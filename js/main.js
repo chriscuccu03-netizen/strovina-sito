@@ -9,22 +9,64 @@
   const isMobile = window.matchMedia("(max-width: 820px)");
 
   /* ══════════════════════════════════════════════════════════
-     PROSSIMI INCONTRI — riempire questo array con le partite.
-     Formato di ogni voce:
-       {
-         data: "2026-09-13T15:30",          // data e ora del calcio d'inizio
-         avversario: "Nome Squadra",
-         casa: true,                         // true = allo Strovina Stadium
-         luogo: "Strovina Stadium",          // opzionale, dedotto da "casa" se omesso
-         competizione: "Terza Categoria"     // opzionale
-       }
-     L'ordinamento per data è automatico (la più vicina in alto).
-     Le partite già giocate spariscono da sole dal carosello.
+     CALENDARIO — Terza Categoria Oristano, Girone F, 2026-27
+     Fonte: calendario ufficiale della Delegazione di Oristano.
+
+     SQUADRE: chiave → nome. Lo stemma è assets/img/squadre/<chiave>.png;
+     con logo: false compare un tondo con la sigla al suo posto.
+
+     PROSSIME_PARTITE, una voce per partita:
+       { g: 1, data: "2026-10-11T16:00", casa: true, avv: "olimpia-arbus" }
+       g      = giornata
+       data   = data e ora del calcio d'inizio
+       casa   = true se si gioca allo Strovina Stadium
+       luogo  = opzionale, per un campo diverso dal solito
+     Se la FIGC sposta una partita basta correggere "data".
+     L'ordinamento è automatico e al calcio d'inizio la partita
+     esce da sola da rail, countdown e match center.
      ══════════════════════════════════════════════════════════ */
+  const SQUADRE = {
+    "laconi":                    { nome: "A.C. Laconi" },
+    "arbus-guspini-costa-verde": { nome: "Arbus Guspini Costa Verde" },
+    "colonia-julia":             { nome: "Colonia Julia" },
+    "emmeci-football-academy":   { nome: "Emmeci Football Academy" },
+    "lunamatrona":               { nome: "Lunamatrona" },
+    "olimpia-arbus":             { nome: "Olimpia Arbus" },
+    "santa-barbara-nureci":      { nome: "Santa Barbara Nureci" },
+    "seddori":                   { nome: "Seddori" },
+    "villacidro-soccer-24":      { nome: "Villacidro Soccer 24" },
+    "villacidrese":              { nome: "Villacidrese" },
+    "virtus-villamar":           { nome: "Virtus Villamar" }
+  };
+
   const PROSSIME_PARTITE = [
-    // Esempio (togliere le barre per attivare):
-    // { data: "2026-09-13T15:30", avversario: "Nome Avversario", casa: true, competizione: "Terza Categoria" },
+    // Andata
+    { g: 1,  data: "2026-10-11T16:00", casa: true,  avv: "olimpia-arbus" },
+    { g: 2,  data: "2026-10-18T16:00", casa: false, avv: "villacidro-soccer-24" },
+    { g: 3,  data: "2026-10-25T15:00", casa: false, avv: "lunamatrona" },
+    { g: 4,  data: "2026-11-08T15:00", casa: true,  avv: "emmeci-football-academy" },
+    { g: 5,  data: "2026-11-15T15:00", casa: false, avv: "laconi" },
+    { g: 6,  data: "2026-11-22T15:00", casa: true,  avv: "villacidrese" },
+    { g: 7,  data: "2026-11-29T15:00", casa: false, avv: "arbus-guspini-costa-verde" },
+    { g: 8,  data: "2026-12-06T15:00", casa: true,  avv: "seddori" },
+    { g: 9,  data: "2026-12-13T15:00", casa: false, avv: "santa-barbara-nureci" },
+    { g: 10, data: "2026-12-20T15:00", casa: true,  avv: "virtus-villamar" },
+    { g: 11, data: "2027-01-10T15:00", casa: false, avv: "colonia-julia" },
+    // Ritorno
+    { g: 12, data: "2027-01-17T15:00", casa: false, avv: "olimpia-arbus" },
+    { g: 13, data: "2027-01-24T15:00", casa: true,  avv: "villacidro-soccer-24" },
+    { g: 14, data: "2027-01-31T15:00", casa: true,  avv: "lunamatrona" },
+    { g: 15, data: "2027-02-14T15:00", casa: false, avv: "emmeci-football-academy" },
+    { g: 16, data: "2027-02-21T15:00", casa: true,  avv: "laconi" },
+    { g: 17, data: "2027-02-28T15:00", casa: false, avv: "villacidrese" },
+    { g: 18, data: "2027-03-07T15:00", casa: true,  avv: "arbus-guspini-costa-verde" },
+    { g: 19, data: "2027-03-14T15:00", casa: false, avv: "seddori" },
+    { g: 20, data: "2027-04-04T16:00", casa: true,  avv: "santa-barbara-nureci" },
+    { g: 21, data: "2027-04-11T16:00", casa: false, avv: "virtus-villamar" },
+    { g: 22, data: "2027-04-18T16:00", casa: true,  avv: "colonia-julia" }
   ];
+
+  const STROVINA = { nome: "Strovina", src: "assets/img/logo-web.png" };
 
   const MESI = ["GEN", "FEB", "MAR", "APR", "MAG", "GIU", "LUG", "AGO", "SET", "OTT", "NOV", "DIC"];
   const GIORNI_SETT = ["DOM", "LUN", "MAR", "MER", "GIO", "VEN", "SAB"];
@@ -41,6 +83,31 @@
     return String(d.getHours()).padStart(2, "0") + ":" + String(d.getMinutes()).padStart(2, "0");
   }
 
+  function avversarioDi(m) {
+    const s = SQUADRE[m.avv] || { nome: m.avv, logo: false };
+    return {
+      nome: s.nome,
+      src: s.logo === false ? null : "assets/img/squadre/" + m.avv + ".png",
+      sigla: s.sigla || s.nome.charAt(0)
+    };
+  }
+
+  function luogoDi(m) {
+    return m.luogo || (m.casa ? "Strovina Stadium" : "In trasferta");
+  }
+
+  // Stemma come <img>, oppure tondo con la sigla se il logo non c'e'
+  function stemma(team, cls) {
+    if (team.src) return '<img src="' + team.src + '" alt="" class="' + cls + '" width="200" height="200">';
+    return '<span class="' + cls + ' crest-sigla" aria-hidden="true">' + team.sigla + '</span>';
+  }
+
+  // La squadra di casa sta sempre a sinistra, come nei tabellini
+  function squadreDi(m) {
+    const avv = avversarioDi(m);
+    return m.casa ? { casa: STROVINA, ospite: avv, avv: avv } : { casa: avv, ospite: STROVINA, avv: avv };
+  }
+
   /* ── Rail laterale hero ── */
   function renderRail() {
     const list = document.getElementById("nextList");
@@ -49,7 +116,7 @@
     const future = partiteFuture();
 
     if (future.length === 0) {
-      // Stato placeholder: calendario non ancora pubblicato
+      // Stagione finita (o calendario non ancora pubblicato)
       let html = "";
       for (let i = 0; i < 4; i++) {
         html +=
@@ -66,22 +133,43 @@
     }
 
     list.innerHTML = future.map(function (m, i) {
-      const luogo = m.luogo || (m.casa ? "Strovina Stadium" : "Trasferta");
-      const comp = m.competizione ? " · " + m.competizione : "";
+      const avv = avversarioDi(m);
       return (
-        '<article class="rail-item' + (i === 0 ? " rail-item--first" : "") + '">' +
+        '<article class="rail-item rail-item--' + (m.casa ? "casa" : "fuori") + (i === 0 ? " rail-item--first" : "") + '">' +
           '<div class="rail-item__date">' +
             '<span class="rail-item__day">' + m._d.getDate() + '</span>' +
             '<span class="rail-item__month">' + MESI[m._d.getMonth()] + '</span>' +
           '</div>' +
+          stemma(avv, "rail-item__crest") +
           '<div class="rail-item__info">' +
-            '<strong>Strovina vs ' + m.avversario + '</strong>' +
-            '<span>' + luogo + ' · ore ' + oraDi(m._d) + comp + '</span>' +
+            '<strong>' + avv.nome + '</strong>' +
+            '<span><em class="rail-item__chip">' + (m.casa ? "Casa" : "Fuori") + '</em>ore ' + oraDi(m._d) + '</span>' +
           '</div>' +
-          '<span class="rail-item__chip">' + (m.casa ? "CASA" : "FUORI") + '</span>' +
         '</article>'
       );
     }).join("");
+  }
+
+  /* ── Match center: card "Prossima partita" ── */
+  function renderMatchCard() {
+    const teams = document.getElementById("mcTeams");
+    if (!teams) return;
+    const next = partiteFuture()[0];
+    if (!next) return; // resta il segnaposto scritto nell'HTML
+
+    const sq = squadreDi(next);
+    function team(t) {
+      return '<div class="match-team">' + stemma(t, "match-team__crest") +
+        '<span class="match-team__name">' + t.nome + '</span></div>';
+    }
+    teams.innerHTML = team(sq.casa) + '<div class="match-card__vs"><span>VS</span></div>' + team(sq.ospite);
+
+    const d = next._d;
+    document.getElementById("mcDate").textContent =
+      GIORNI_SETT[d.getDay()] + " " + d.getDate() + " " + MESI[d.getMonth()] + " " + d.getFullYear() + " · ore " + oraDi(d);
+    document.getElementById("mcVenue").textContent =
+      next.luogo || (next.casa ? "Strovina Stadium · Borgo Strovina" : "In trasferta");
+    document.getElementById("mcNote").textContent = next.g + "ª giornata · Terza Categoria, Girone F";
   }
 
   /* ── Matchbar: prossima partita + countdown ── */
@@ -89,7 +177,8 @@
 
   function renderMatchBar() {
     const dateEl = document.getElementById("mbDate");
-    const oppEl = document.getElementById("mbOpp");
+    const homeEl = document.getElementById("mbHome");
+    const awayEl = document.getElementById("mbAway");
     const cdG = document.getElementById("cdG");
     const cdH = document.getElementById("cdH");
     const cdM = document.getElementById("cdM");
@@ -102,22 +191,25 @@
 
     if (!next) {
       dateEl.textContent = "Data da definire";
-      oppEl.textContent = "Da definire";
       cdG.textContent = cdH.textContent = cdM.textContent = cdS.textContent = "--";
       return;
     }
 
     const d = next._d;
     dateEl.textContent = GIORNI_SETT[d.getDay()] + " " + d.getDate() + " " + MESI[d.getMonth()] + " · ore " + oraDi(d) +
-      " · " + (next.luogo || (next.casa ? "Strovina Stadium" : "Trasferta"));
-    oppEl.textContent = next.avversario;
+      " · " + luogoDi(next);
+
+    const sq = squadreDi(next);
+    homeEl.innerHTML = stemma(sq.casa, "matchbar__crest") + '<span class="matchbar__name">' + sq.casa.nome + '</span>';
+    awayEl.innerHTML = stemma(sq.ospite, "matchbar__crest") + '<span class="matchbar__name">' + sq.ospite.nome + '</span>';
 
     function tick() {
       const diff = d - new Date();
       if (diff <= 0) {
-        // Calcio d'inizio: la partita esce da carosello e countdown
+        // Calcio d'inizio: la partita esce da rail, countdown e match center
         clearInterval(countdownTimer);
         renderRail();
+        renderMatchCard();
         renderMatchBar();
         return;
       }
@@ -132,6 +224,7 @@
   }
 
   renderRail();
+  renderMatchCard();
   renderMatchBar();
 
   /* ── Header: stato scrolled ── */
@@ -139,11 +232,19 @@
   const toTop = document.getElementById("toTop");
   let ticking = false;
 
+  const footStrip = document.querySelector(".footer .topbar");
+
   function onScroll() {
     const y = window.scrollY;
     // pagine come tesseramento.html non hanno header ne' pulsante "torna su"
     if (header) header.classList.toggle("is-scrolled", y > 40);
     if (toTop) toTop.classList.toggle("is-visible", y > 900);
+
+    // In fondo alla pagina il pulsante "torna su" sale sopra la striscia del footer
+    if (toTop && footStrip) {
+      const sotto = window.innerHeight - footStrip.getBoundingClientRect().top;
+      toTop.style.bottom = sotto > 0 ? "calc(1.4rem + " + sotto + "px)" : "";
+    }
 
     // Parallax leggero sull'hero (solo desktop)
     if (!prefersReducedMotion && heroBg) {
