@@ -342,6 +342,19 @@
     counters.forEach(function (el) { el.textContent = el.getAttribute("data-count"); });
   }
 
+  /* ── Gallery: "Mostra tutte" apre le foto oltre le prime 12 ── */
+  const galleryToggle = document.getElementById("galleryToggle");
+  if (galleryToggle) {
+    const nuove = document.getElementById(galleryToggle.getAttribute("aria-controls"));
+    const testoChiuso = galleryToggle.textContent;
+    galleryToggle.addEventListener("click", function () {
+      const open = nuove.classList.toggle("is-open");
+      galleryToggle.setAttribute("aria-expanded", String(open));
+      galleryToggle.textContent = open ? "Mostra meno foto" : testoChiuso;
+      if (!open) nuove.scrollIntoView({ behavior: prefersReducedMotion ? "auto" : "smooth", block: "start" });
+    });
+  }
+
   /* ── Lightbox gallery ── */
   const grid = document.getElementById("galleryGrid");
   const lightbox = document.getElementById("lightbox");

@@ -54,8 +54,7 @@ mostra un avviso invece di inviare.
 
 | Cosa | Dove |
 |---|---|
-| **Rosa 2026-27** | sezione `#squadra`, blocco `.rosa-placeholder` |
-| **Link ai siti degli sponsor** | sezione `#sponsor` — i 5 loghi sono inseriti, mancano gli URL |
+| **Link ai siti degli sponsor** | sezione `#sponsor`: gli 11 loghi sono inseriti, mancano gli URL |
 | **P.IVA / Codice Fiscale** | tolta dal footer su richiesta (ottobre 2026); se arriva, rimettere un `<p class="footer__fiscal">` in `.footer__meta` |
 | **Link Tuttocampo diretto** | card campionato in `#stagione` (ID società: 1028079) |
 | **Collegamento del modulo a Google** | `js/tesseramento.js`, `CONFIG.ENDPOINT` — vedi `apps-script/ISTRUZIONI.md` |

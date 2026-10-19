@@ -1011,38 +1011,53 @@ section[id], [id="contatti"] { scroll-margin-top: 1rem; }
 }
 .staff-card__role--top { color: var(--giallo); }
 
-.rosa-placeholder {
-  border: 2px dashed rgba(250, 245, 233, .25);
-  border-radius: var(--radius);
-  padding: clamp(2rem, 5vw, 3.2rem);
-  text-align: center;
-}
-.rosa-placeholder__shirts {
-  display: flex; justify-content: center; gap: .7rem;
-  margin-bottom: 1.4rem;
-  flex-wrap: wrap;
-}
-.shirt {
-  display: grid; place-items: center;
-  width: 58px; height: 62px;
-  background: linear-gradient(180deg, rgba(255, 221, 0, .16), rgba(255, 221, 0, .05));
-  border: 1.5px solid rgba(255, 221, 0, .35);
-  clip-path: polygon(25% 0, 75% 0, 100% 18%, 88% 32%, 88% 100%, 12% 100%, 12% 32%, 0 18%);
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 1.3rem;
-  color: rgba(255, 221, 0, .6);
-}
-.rosa-placeholder h4 {
+.rosa { display: flex; flex-direction: column; gap: 2rem; }
+.rosa-group__title {
+  display: flex;
+  align-items: baseline;
+  gap: .6rem;
   font-family: var(--font-display);
   font-weight: 600;
+  font-size: .85rem;
+  letter-spacing: .26em;
   text-transform: uppercase;
-  letter-spacing: .1em;
-  font-size: 1.3rem;
-  color: var(--giallo);
-  margin-bottom: .6rem;
+  color: rgba(250, 245, 233, .7);
+  margin-bottom: .9rem;
 }
-.rosa-placeholder p { color: rgba(250, 245, 233, .65); max-width: 58ch; margin-inline: auto; }
+.rosa-group__title span { color: var(--giallo); letter-spacing: .05em; }
+.rosa-grid {
+  list-style: none;
+  margin: 0; padding: 0;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: .8rem;
+}
+.rosa-card {
+  display: flex;
+  flex-direction: column;
+  gap: .15rem;
+  padding: 1rem 1.2rem;
+  background: linear-gradient(165deg, var(--notte-2), rgba(42, 11, 21, .35));
+  border: 1px solid rgba(250, 245, 233, .12);
+  border-left: 3px solid var(--amaranto-vivo);
+  border-radius: var(--radius);
+  transition: border-color var(--transition), transform var(--transition);
+}
+.rosa-card:hover { border-color: rgba(255, 221, 0, .4); border-left-color: var(--giallo); transform: translateY(-3px); }
+.rosa-card__nome {
+  font-size: .82rem;
+  text-transform: uppercase;
+  letter-spacing: .14em;
+  color: rgba(250, 245, 233, .6);
+}
+.rosa-card__cognome {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+  color: var(--crema);
+}
 
 /* ═══════════ STADIUM ═══════════ */
 .stadium-grid {
@@ -1107,6 +1122,37 @@ section[id], [id="contatti"] { scroll-margin-top: 1rem; }
   transition: transform .6s cubic-bezier(.22, .8, .3, 1);
 }
 .gallery-item:hover img { transform: scale(1.07); }
+/* Gallery a blocchi (una partita per blocco) */
+.gallery-block + .gallery-block { margin-top: 1rem; }
+.gallery-block__title { margin-top: 0; }
+.gallery-block + .gallery-block .gallery-block__title { margin-top: 3rem; }
+.gallery-block__meta {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: .8rem;
+  letter-spacing: .08em;
+  color: rgba(250, 245, 233, .55);
+  order: 2;
+}
+.gallery-block__title::after { order: 1; }
+.gallery-match { display: flex; align-items: center; gap: .9rem; }
+.gallery-match__crest {
+  width: 52px; height: 52px;
+  object-fit: contain;
+  filter: drop-shadow(0 0 7px rgba(250, 245, 233, .3));
+}
+.gallery-match b { font-size: 1rem; letter-spacing: .1em; color: var(--amaranto-vivo); }
+.sr-only {
+  position: absolute;
+  width: 1px; height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+.gallery-grid--wide .gallery-item { aspect-ratio: 3 / 2; }
+.gallery-item--extra { display: none; }
+.gallery-grid.is-open .gallery-item--extra { display: block; }
+.gallery-toggle { display: table; margin: 1.6rem auto 0; }
 .gallery-more { margin-top: 2rem; text-align: center; color: rgba(250, 245, 233, .6); }
 .gallery-more a { color: var(--giallo); font-weight: 600; }
 
@@ -1394,6 +1440,7 @@ section[id], [id="contatti"] { scroll-margin-top: 1rem; }
   .matchbar__label { align-items: center; min-width: 0; width: 100%; }
   .match-grid { grid-template-columns: 1fr 1fr; }
   .staff-grid { grid-template-columns: repeat(3, 1fr); }
+  .rosa-grid { grid-template-columns: repeat(3, 1fr); }
   .gallery-grid { grid-template-columns: repeat(3, 1fr); }
   .contact-grid { grid-template-columns: repeat(2, 1fr); }
   .timeline__list { grid-template-columns: repeat(2, 1fr); }
@@ -1526,6 +1573,7 @@ section[id], [id="contatti"] { scroll-margin-top: 1rem; }
   .stadium-grid { grid-template-columns: 1fr; }
   .sponsor-grid { grid-template-columns: 1fr; }
   .staff-grid { grid-template-columns: repeat(2, 1fr); }
+  .rosa-grid { grid-template-columns: repeat(2, 1fr); }
   .footer__inner { grid-template-columns: 1fr; gap: 2rem; }
   .lightbox { padding: 1rem; }
   .lightbox__nav { font-size: 2.4rem; }
@@ -1537,6 +1585,11 @@ section[id], [id="contatti"] { scroll-margin-top: 1rem; }
   .contact-grid { grid-template-columns: 1fr; }
   .staff-grid { grid-template-columns: repeat(2, 1fr); gap: .8rem; }
   .staff-card { padding: 1.3rem 1rem 1.1rem; }
+  .rosa-card { padding: .85rem 1rem; }
+  .gallery-block__title { flex-wrap: wrap; row-gap: .35rem; }
+  .gallery-block__title::after { display: none; }
+  .gallery-block__meta { flex-basis: 100%; }
+  .rosa-card__cognome { font-size: 1.05rem; }
   .match-card__teams { gap: .4rem; }
   .match-team__crest, .match-team__crest--tbd { width: 72px; height: 72px; }
   .hero__actions .btn { width: 100%; text-align: center; }
