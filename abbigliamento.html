@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Tuta e polo — A.S.D. Polisportiva Strovina</title>
+  <meta name="description" content="Modulo per ordinare la tuta bianco-nera e la polo a maniche corte della A.S.D. Polisportiva Strovina.">
+  <!-- pagina di servizio: non deve finire su Google -->
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#8E1B30">
+
+  <link rel="icon" type="image/png" href="assets/img/favicon.png">
+  <link rel="apple-touch-icon" href="assets/img/favicon.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Barlow:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/tesseramento.css">
+  <link rel="stylesheet" href="css/abbigliamento.css">
+</head>
+<body class="page-form">
+
+  <main id="top">
+
+    <!-- ══════════════ INTRO ══════════════ -->
+    <section class="form-hero">
+      <div class="container">
+        <p class="section__kicker reveal">Stagione 2026-27</p>
+        <h1 class="form-hero__title reveal">Tuta e <em>polo</em></h1>
+        <p class="form-hero__sub reveal">
+          Ordina la tuta bianco-nera e la polo a maniche corte della Strovina, anche per altre persone.
+        </p>
+        <p class="form-hero__hint reveal">I campi con <span class="req-mark">*</span> sono obbligatori.</p>
+      </div>
+    </section>
+
+    <!-- ══════════════ FORM ══════════════ -->
+    <section class="section section--cream form-section">
+      <div class="container container--narrow">
+
+        <form class="tform" id="tform" novalidate>
+
+          <!-- ─── Chi sei ─── -->
+          <fieldset class="tform__group reveal">
+            <legend class="tform__legend"><span class="tform__step">1</span> Chi sei</legend>
+
+            <div class="tform__row">
+              <div class="field">
+                <label for="nome">Nome <span class="req-mark">*</span></label>
+                <input type="text" id="nome" name="nome" autocomplete="given-name" required maxlength="60">
+                <p class="field__error" data-error-for="nome"></p>
+              </div>
+              <div class="field">
+                <label for="cognome">Cognome <span class="req-mark">*</span></label>
+                <input type="text" id="cognome" name="cognome" autocomplete="family-name" required maxlength="60">
+                <p class="field__error" data-error-for="cognome"></p>
+              </div>
+            </div>
+          </fieldset>
+
+          <!-- ─── Capi ─── -->
+          <fieldset class="tform__group reveal" id="capiGroup">
+            <legend class="tform__legend"><span class="tform__step">2</span> Cosa vuoi acquistare</legend>
+            <p class="tform__note">Puoi scegliere la tuta, la polo o entrambe. Se ne prendi più di una, anche per altre persone, indica la taglia di ognuna.</p>
+
+            <!-- Prezzi e nomi dei capi stanno in js/abbigliamento.js (CAPI) e in apps-script/Codice.gs (ORDINI_CAPI) -->
+            <div class="capo" data-capo="tuta">
+              <label class="check capo__head">
+                <input type="checkbox" name="vuole_tuta">
+                <span class="check__box" aria-hidden="true"></span>
+                <span class="capo__nome">Tuta bianco-nera</span>
+                <span class="capo__prezzo">45 €</span>
+              </label>
+              <div class="capo__body" hidden>
+                <div class="qty">
+                  <span class="qty__label" id="qtyLabel_tuta">Quantità</span>
+                  <div class="qty__ctrl" role="group" aria-labelledby="qtyLabel_tuta">
+                    <button type="button" class="qty__btn" data-step="-1" aria-label="Una tuta in meno">−</button>
+                    <output class="qty__val" aria-live="polite">1</output>
+                    <button type="button" class="qty__btn" data-step="1" aria-label="Una tuta in più">+</button>
+                  </div>
+                </div>
+                <div class="capo__pezzi"></div>
+              </div>
+            </div>
+
+            <div class="capo" data-capo="polo">
+              <label class="check capo__head">
+                <input type="checkbox" name="vuole_polo">
+                <span class="check__box" aria-hidden="true"></span>
+                <span class="capo__nome">Polo a maniche corte</span>
+                <span class="capo__prezzo">20 €</span>
+              </label>
+              <div class="capo__body" hidden>
+                <div class="qty">
+                  <span class="qty__label" id="qtyLabel_polo">Quantità</span>
+                  <div class="qty__ctrl" role="group" aria-labelledby="qtyLabel_polo">
+                    <button type="button" class="qty__btn" data-step="-1" aria-label="Una polo in meno">−</button>
+                    <output class="qty__val" aria-live="polite">1</output>
+                    <button type="button" class="qty__btn" data-step="1" aria-label="Una polo in più">+</button>
+                  </div>
+                </div>
+                <div class="capo__pezzi"></div>
+              </div>
+            </div>
+
+            <p class="field__error capi__error" id="capiError"></p>
+          </fieldset>
+
+          <!-- ─── Riepilogo e note ─── -->
+          <fieldset class="tform__group reveal">
+            <legend class="tform__legend"><span class="tform__step">3</span> Riepilogo</legend>
+
+            <div class="riepilogo" id="riepilogo">
+              <p class="riepilogo__vuoto">Scegli almeno un capo per vedere il totale.</p>
+            </div>
+
+            <div class="field">
+              <label for="note">Note</label>
+              <textarea id="note" name="note" rows="3" maxlength="500"
+                        placeholder="Facoltativo, es. una richiesta particolare o un recapito per contattarti"></textarea>
+            </div>
+          </fieldset>
+
+          <!-- honeypot: invisibile a te, irresistibile per i bot -->
+          <div class="hp" aria-hidden="true">
+            <label for="sitoWeb">Non compilare questo campo</label>
+            <input type="text" id="sitoWeb" name="sitoWeb" tabindex="-1" autocomplete="off">
+          </div>
+
+          <!-- ─── Invio ─── -->
+          <div class="tform__submit reveal">
+            <button type="submit" class="btn btn--amaranto btn--big" id="submitBtn">
+              <span class="btn__label">Invia l'ordine</span>
+              <span class="btn__spinner" aria-hidden="true"></span>
+            </button>
+            <p class="tform__status" id="formStatus" role="status" aria-live="polite"></p>
+          </div>
+        </form>
+
+        <!-- ─── Schermata di conferma ─── -->
+        <div class="tform-done" id="formDone" hidden>
+          <div class="tform-done__badge" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+          </div>
+          <h2>Ordine ricevuto</h2>
+          <p id="doneMsg">Il tuo ordine è arrivato alla segreteria della Strovina.</p>
+          <div class="tform-done__actions">
+            <a class="btn btn--ghost-dark" href="/">Torna al sito</a>
+            <button type="button" class="btn btn--giallo" id="againBtn">Fai un altro ordine</button>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- ══════════════ FOOTER ══════════════ -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <img src="assets/img/logo-web.png" alt="Stemma A.S.D. Polisportiva Strovina" width="86" height="86" loading="lazy">
+        <p class="footer__motto">Incontrarsi, stare insieme e, grazie allo sport,<br>far crescere la comunità di Sanluri Stato.</p>
+      </div>
+      <nav class="footer__nav" aria-label="Navigazione footer">
+        <a href="index.html#stagione">Stagione</a>
+        <a href="index.html#societa">La Società</a>
+        <a href="index.html#squadra">Squadra</a>
+        <a href="index.html#stadium">Stadium</a>
+        <a href="index.html#gallery">Gallery</a>
+        <a href="index.html#sponsor">Sponsor</a>
+        <a href="index.html#contatti">Contatti</a>
+      </nav>
+      <div class="footer__meta">
+        <p>A.S.D. Polisportiva Strovina · fondata il 12 aprile 2012<br>
+        Piazza Demontis snc, 09025 Sanluri (SU)</p>
+      </div>
+    </div>
+    <div class="footer__bar">
+      <p>© <span id="year">2026</span> A.S.D. Polisportiva Strovina, Stai, dal 2012. Tutti i diritti riservati.</p>
+    </div>
+  </footer>
+
+  <button class="to-top" id="toTop" aria-label="Torna in cima">↑</button>
+
+  <script src="js/main.js"></script>
+  <script src="js/abbigliamento.js"></script>
+</body>
+</html>

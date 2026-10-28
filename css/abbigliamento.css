@@ -1,0 +1,135 @@
+/* ═══════════════════════════════════════════════════════════
+   Modulo ordini tuta e polo (abbigliamento.html)
+   Si appoggia a tesseramento.css per campi, gruppi e pulsanti
+   ═══════════════════════════════════════════════════════════ */
+
+/* ── Un blocco per capo: casella col nome e il prezzo, poi quantità e taglie ── */
+.capo {
+  border: 1.5px solid rgba(36, 19, 24, .14);
+  border-radius: var(--radius);
+  background: var(--crema);
+  transition: border-color var(--transition), background var(--transition);
+}
+.capo + .capo { margin-top: 1rem; }
+.capo.is-on { border-color: var(--amaranto); background: #fff; }
+
+.capo__head {
+  align-items: center;
+  padding: 1.1rem 1.3rem;
+}
+.capo__head .check__box { margin-top: 0; }
+.capo__nome {
+  flex: 1;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.1rem;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--amaranto-scuro);
+}
+.capo__prezzo {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.2rem;
+  color: var(--amaranto);
+  white-space: nowrap;
+}
+
+.capo__body {
+  border-top: 1px solid rgba(36, 19, 24, .1);
+  padding: 1.1rem 1.3rem 1.3rem;
+}
+
+/* ── Quantità − 1 + ── */
+.qty { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+.qty__label {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: .82rem;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--amaranto-scuro);
+}
+.qty__ctrl { display: flex; align-items: center; gap: .3rem; }
+.qty__btn {
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  border: 1.5px solid var(--amaranto);
+  background: #fff;
+  color: var(--amaranto);
+  font-size: 1.3rem;
+  font-weight: 700;
+  line-height: 1;
+  cursor: pointer;
+  transition: background var(--transition), color var(--transition);
+}
+.qty__btn:hover:not(:disabled) { background: var(--amaranto); color: var(--crema); }
+.qty__btn:disabled { opacity: .35; cursor: default; }
+.qty__val {
+  min-width: 2.4rem;
+  text-align: center;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.35rem;
+  color: var(--inchiostro);
+}
+
+/* ── Una riga per pezzo: "Tuta 1" · taglia · per chi ── */
+.capo__pezzi { margin-top: 1rem; display: flex; flex-direction: column; gap: .9rem; }
+.pezzo {
+  display: grid;
+  grid-template-columns: 4.6rem 9rem 1fr;
+  gap: .6rem 1rem;
+  align-items: start;
+  padding-top: .9rem;
+  border-top: 1px dashed rgba(36, 19, 24, .14);
+}
+.pezzo .field + .field { margin-top: 0; }
+.pezzo__n {
+  padding-top: 2.15rem;   /* allineato al campo, sotto l'etichetta */
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: .9rem;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--amaranto);
+}
+
+.capi__error { margin-top: .9rem; }
+.capi__error:not(:empty) { display: block; }
+
+/* ── Riepilogo col totale ── */
+.riepilogo {
+  background: var(--crema);
+  border-radius: 8px;
+  padding: 1rem 1.2rem;
+  margin-bottom: 1.3rem;
+}
+.riepilogo__vuoto { color: var(--grigio); font-size: .92rem; }
+.riepilogo__riga,
+.riepilogo__totale {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+}
+.riepilogo__riga + .riepilogo__riga { margin-top: .5rem; }
+.riepilogo__riga small { display: block; font-size: .8rem; color: var(--grigio); }
+.riepilogo__riga strong { white-space: nowrap; }
+.riepilogo__totale {
+  margin-top: .8rem;
+  padding-top: .8rem;
+  border-top: 1.5px solid rgba(36, 19, 24, .15);
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  color: var(--amaranto-scuro);
+}
+.riepilogo__totale strong { font-size: 1.5rem; color: var(--amaranto); letter-spacing: .02em; }
+
+@media (max-width: 720px) {
+  .capo__head { padding: 1rem; }
+  .capo__body { padding: 1rem; }
+  .pezzo { grid-template-columns: 1fr 1fr; }
+  .pezzo__n { grid-column: 1 / -1; padding-top: 0; }
+}
